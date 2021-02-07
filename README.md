@@ -126,20 +126,20 @@ interface Text extends Block {
 }
 ```
 
-**Text** ([**Block**](#block)) represents a text block (title, paragraph, etc)
-in Notion.
+**Text** ([**Block**](#block)) represents a text block in Notion. It is an
+equivalence to [**MdastParagraph**][dfn-mdast-paragraph].
 
 ### `Divider`
 
 ```ts
-interface Divider extends Block {
+interface Divider extends Omit<Block, "title"> {
   type: "divider";
-  title: [];
 }
 ```
 
 **Divider** ([**Block**](#block)) represents divider block in Notion. It has no
-content.
+content. It is an equivalence to
+[**MdastThematicBreak**][dfn-mdast-thematicbreak].
 
 ### `ToDo`
 
@@ -199,3 +199,5 @@ Tran][@phuctm97]
 [dfn-unist-literal]: https://github.com/syntax-tree/unist#literal
 [dfn-unist-root]: https://github.com/syntax-tree/unist#root
 [dfn-unist-tree]: https://github.com/syntax-tree/unist#tree
+[dfn-mdast-paragraph]: https://github.com/syntax-tree/mdast#paragraph
+[dfn-mdast-thematicbreak]: https://github.com/syntax-tree/mdast#thematicbreak
