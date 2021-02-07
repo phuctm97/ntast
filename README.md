@@ -50,18 +50,30 @@ trees can be used throughout their ecosystems.
 
 ## Nodes
 
+### `Node`
+
+```ts
+interface Node extends UnistNode {
+  type: NtastTypes;
+}
+```
+
+**Node** ([**UnistNode**][dfn-unist-node]) represents a node in ntast. It's
+defined to differentiate a node in ntast with nodes in other unist-based
+specifications.
+
 ### `Parent`
 
 ```ts
 interface Parent extends UnistParent {
-  children: Content[];
+  children: Node[];
 }
 ```
 
 **Parent** ([**UnistParent**][dfn-unist-parent]) represents a node in ntast
 containing other nodes (said to be [children][dfn-unist-child]).
 
-Its content is limited to only other **ntast content**.
+Its content is limited to only other ntast nodes.
 
 ### `Literal`
 
@@ -99,14 +111,32 @@ interface Page extends Block, Parent {
 }
 ```
 
-**Page** ([**Parent**](#parent)) represents a page.
+**Page** ([**Block**](#block), [**Parent**](#parent)) represents a page.
 
 **Page** can be used as the [root][dfn-unist-root] of a [tree][dfn-unist-tree]
 or a [child][dfn-unist-child] of another [page](#page) (also known as a
 subpage).
 
+### `Text`
+
+```ts
+interface Text extends Block {
+  contents: InlineContent[];
+}
+```
+
+**Text** ([**Block**](#block)) represents a paragraph in Notion. It contains
+multiple inline contents.
+
+---
+
+## License
+
+[CC-BY-4.0](/LICENSE) © [Minh-Phuc Tran][@phuctm97]
+
 <!-- Definitions -->
 
+[@phuctm97]: https://twitter.com/phuctm97
 [banner]: /banner.svg
 [notion tweet]: https://notiontweet.app
 [notion]: https://notion.so
