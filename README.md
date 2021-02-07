@@ -8,7 +8,8 @@
 
 **ntast** is a specification for representing [Notion] pages in [syntax
 trees][syntax-tree]. It implements the [**unist**][unist] specification. It can
-represent different types of Notion pages: Page, Table, Board, List, Calendar.
+represent different types of pages in Notion: Page, Table, Board, List, and
+Calendar.
 
 ## Contents
 
@@ -43,6 +44,12 @@ to JavaScript and can be used in other programming languages.
 
 ntast relates to the [unified] and [unified]-based projects in that ntast syntax
 trees can be used throughout their ecosystems.
+
+### What this specification doesn't do
+
+ntast focuses on content. Notion-application data structures like workspaces,
+users, permissions, settings, etc, aren't defined by ntast. Ecosystem plugins
+can process and extend functionalities based on these data, though.
 
 ## Nodes
 
