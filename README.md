@@ -13,18 +13,13 @@ different types of Notion pages: Page, Table, Board, List, Calendar.
 ## Contents
 
 - [Introduction](#introduction)
-
   - [Where this specification fits](#where-this-specification-fits)
-
 - [Nodes](#nodes)
-
-  - [Parent](#parent)
-  - [Literal](#literal)
-  - [Block](#block)
-  - [Page](#page)
-
+  - [`Parent`](#parent)
+  - [`Literal`](#literal)
+  - [`Block`](#block)
+  - [`Page`](#page)
 - [Acknowledgement](#acknowledgement)
-
 - [License](#license)
 
 ## Introduction
