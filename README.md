@@ -177,8 +177,7 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 
 ## License
 
-[CC-BY-4.0](https://creativecommons.org/licenses/by/4.0) © [Minh-Phuc
-Tran][@phuctm97]
+[CC-BY-4.0](/LICENSE) © [Minh-Phuc Tran][@phuctm97].
 
 <!-- Definitions -->
 
