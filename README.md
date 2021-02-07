@@ -2,6 +2,8 @@
 
 **N**o**t**ion **A**bstract **S**yntax **T**ree.
 
+> by [Notion Tweet]
+
 ---
 
 **ntast** is a specification for representing [Notion] pages in [syntax
@@ -12,7 +14,6 @@ different types of Notion pages: Page, Table, Board, List, Calendar.
 
 - [Introduction](#introduction)
 
-  - [Acknowledgement](#acknowledgement)
   - [Where this specification fits](#where-this-specification-fits)
 
 - [Nodes](#nodes)
@@ -22,19 +23,13 @@ different types of Notion pages: Page, Table, Board, List, Calendar.
   - [Block](#block)
   - [Page](#page)
 
+- [Acknowledgement](#acknowledgement)
+
 ## Introduction
 
 This document defines a format for representing [Notion] pages as [abstract
 syntax trees][syntax-tree]. This specification is written in [Typescript]
 syntax.
-
-### Acknowledgement
-
-ntast is created and maintained by the creator of [Notion Tweet] - a tool to
-write, schedule, and automate your tweets 10x easier, directly in Notion.
-
-Special thanks to @wooorm for his work on [unist], [mdast], and [unified], by
-which this project is heavily inspired.
 
 ### Where this specification fits
 
@@ -129,6 +124,14 @@ interface Text extends Block {
 multiple inline contents.
 
 ---
+
+## Acknowledgement
+
+ntast is created and maintained by the creator of [Notion Tweet] - a tool to
+write, schedule, and automate your tweets 10x easier, directly in Notion.
+
+Special thanks to @wooorm for his work on [unist], [mdast], and [unified], by
+which this project is heavily inspired.
 
 ## License
 
