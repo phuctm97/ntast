@@ -25,6 +25,8 @@ different types of Notion pages: Page, Table, Board, List, Calendar.
 
 - [Acknowledgement](#acknowledgement)
 
+- [License](#license)
+
 ## Introduction
 
 This document defines a format for representing [Notion] pages as [abstract
