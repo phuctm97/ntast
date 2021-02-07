@@ -26,7 +26,7 @@ Calendar.
   - [`Divider`](#divider)
   - [`ToDo`](#todo)
   - [`BulletedList`](#bulletedlist)
-- [Acknowledgement](#acknowledgement)
+- [Acknowledgements](#acknowledgements)
 - [License](#license)
 
 ## Introduction
@@ -167,9 +167,9 @@ bulleted list block in Notion. It may has children. It is an equivalence to
 
 ---
 
-## Acknowledgement
+## Acknowledgements
 
-ntast is created and maintained by the creator of [Notion Tweet] - a tool to
+ntast is created and maintained by the creator of [Notion Tweet] - A tool to
 write, schedule, and automate your tweets 10x easier, directly in Notion.
 
 Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
