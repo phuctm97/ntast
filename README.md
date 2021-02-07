@@ -15,6 +15,7 @@ Calendar.
 
 - [Introduction](#introduction)
   - [Where this specification fits](#where-this-specification-fits)
+  - [What this specification doesn't do](#what-this-specification-doesnt-do)
 - [Nodes](#nodes)
   - [`Node`](#node)
   - [`Parent`](#parent)
@@ -47,9 +48,10 @@ trees can be used throughout their ecosystems.
 
 ### What this specification doesn't do
 
-ntast focuses on content. Notion-application data structures like workspaces,
-users, permissions, settings, etc, aren't defined by ntast. Ecosystem plugins
-can process and extend functionalities based on these data, though.
+ntast focuses on only content. Notion-application data structures like
+workspaces, users, permissions, settings, etc, aren't handled by ntast.
+Ecosystem plugins can process and extend functionalities using these data from
+Notion API.
 
 ## Nodes
 
