@@ -95,14 +95,14 @@ Its `value` is a `string`.
 ### `Block`
 
 ```ts
-interface Block extends UnistNode {
+interface Block extends Node {
   id: UUID;
   title: InlineContent[];
 }
 ```
 
-**Block** ([**UnistNode**][dfn-unist-node]) represents what is famously known as
-a "block" in Notion. A block has a unique `id` for references and a `title`.
+**Block** ([**Node**](#node)) represents what is famously known as a "block" in
+Notion. Each block has a unique `id` for references and a `title` content.
 
 ### `Page`
 
