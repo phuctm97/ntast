@@ -2,31 +2,35 @@
 
 **N**o**t**ion **A**bstract **S**yntax **T**ree.
 
-> by [Notion Tweet]
+> by [Notion Tweet].
 
 ---
 
 **ntast** is a specification for representing [Notion] pages in [syntax
-trees][syntax-tree]. It implements the [**unist**][unist] spec. It can represent
-different types of Notion pages: Page, Table, Board, List, Calendar.
+trees][syntax-tree]. It implements the [**unist**][unist] specification. It can
+represent different types of Notion pages: Page, Table, Board, List, Calendar.
 
 ## Contents
 
 - [Introduction](#introduction)
   - [Where this specification fits](#where-this-specification-fits)
 - [Nodes](#nodes)
+  - [`Node`](#node)
   - [`Parent`](#parent)
   - [`Literal`](#literal)
   - [`Block`](#block)
   - [`Page`](#page)
+  - [`Text`](#text)
+  - [`Divider`](#divider)
+  - [`ToDo`](#todo)
+  - [`BulletedList`](#bulletedlist)
 - [Acknowledgement](#acknowledgement)
 - [License](#license)
 
 ## Introduction
 
 This document defines a format for representing [Notion] pages as [abstract
-syntax trees][syntax-tree]. This specification is written in [Typescript]
-syntax.
+syntax trees][syntax-tree]. This specification is written in [Typescript].
 
 ### Where this specification fits
 
@@ -37,7 +41,7 @@ ntast relates to [JavaScript] in that it has a rich ecosystem of utilities for
 working with compliant syntax trees in JavaScript. However, ntast is not limited
 to JavaScript and can be used in other programming languages.
 
-ntast relates to the [unified] and unified-based projects in that ntast syntax
+ntast relates to the [unified] and [unified]-based projects in that ntast syntax
 trees can be used throughout their ecosystems.
 
 ## Nodes
@@ -46,13 +50,12 @@ trees can be used throughout their ecosystems.
 
 ```ts
 interface Node extends UnistNode {
-  type: NtastTypes;
+  type: NtastType;
 }
 ```
 
-**Node** ([**UnistNode**][dfn-unist-node]) represents a node in ntast. It's
-defined to differentiate a node in ntast with nodes in other unist-based
-specifications.
+**Node** ([**UnistNode**][dfn-unist-node]) represents a node in ntast. It
+differentiates a node in ntast with nodes in other [unist]-based specifications.
 
 ### `Parent`
 
@@ -63,9 +66,9 @@ interface Parent extends UnistParent {
 ```
 
 **Parent** ([**UnistParent**][dfn-unist-parent]) represents a node in ntast
-containing other nodes (said to be [children][dfn-unist-child]).
+containing other [nodes](#node) (said to be [children][dfn-unist-child]).
 
-Its content is limited to only other ntast nodes.
+Its content is limited to only ntast nodes.
 
 ### `Literal`
 
@@ -85,15 +88,12 @@ Its `value` is a `string`.
 ```ts
 interface Block extends UnistNode {
   id: UUID;
-  version: number;
   title: InlineContent[];
 }
 ```
 
-**Block** ([**UnistNode**][dfn-unist-node]) represents a node in ntast
-containing a unique `id`, a `version` number, and an inline `title`.
-
-It is what famously known as a "block" in Notion.
+**Block** ([**UnistNode**][dfn-unist-node]) represents what is famously known as
+a "block" in Notion. A block has a unique `id` for references and a `title`.
 
 ### `Page`
 
@@ -113,12 +113,47 @@ subpage).
 
 ```ts
 interface Text extends Block {
-  contents: InlineContent[];
+  type: "text";
 }
 ```
 
-**Text** ([**Block**](#block)) represents a paragraph in Notion. It contains
-multiple inline contents.
+**Text** ([**Block**](#block)) represents a text block (title, paragraph, etc)
+in Notion.
+
+### `Divider`
+
+```ts
+interface Divider extends Block {
+  type: "divider";
+  title: [];
+}
+```
+
+**Divider** ([**Block**](#block)) represents divider block in Notion. It has no
+content.
+
+### `ToDo`
+
+```ts
+interface ToDo extends Block {
+  type: "to_do";
+  checked: boolean;
+}
+```
+
+**ToDo** ([**Block**](#block)) represents to-do block in Notion. It has a
+`checked` value indicating if it's checked or not.
+
+### `BulletedList`
+
+```ts
+interface BulletedList extends Block, Parent {
+  type: "bulleted_list";
+}
+```
+
+**BulletedList** ([**Block**](#block),[**Parent**](#block)) represents bulleted
+list block in Notion. It may has children.
 
 ---
 
