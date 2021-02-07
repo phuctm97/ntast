@@ -112,11 +112,11 @@ interface Page extends Block, Parent {
 }
 ```
 
-**Page** ([**Block**](#block), [**Parent**](#parent)) represents a page.
+**Page** ([**Block**](#block), [**Parent**](#parent)) represents a page in
+Notion.
 
-**Page** can be used as the [root][dfn-unist-root] of a [tree][dfn-unist-tree]
-or a [child][dfn-unist-child] of another [page](#page) (also known as a
-subpage).
+**Page** can be the [root][dfn-unist-root] of a [tree][dfn-unist-tree] or a
+[child][dfn-unist-child] of another [page](#page) (also known as a subpage).
 
 ### `Text`
 
