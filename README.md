@@ -137,8 +137,8 @@ interface Divider extends Omit<Block, "title"> {
 }
 ```
 
-**Divider** ([**Block**](#block)) represents divider block in Notion. It has no
-content. It is an equivalence to
+**Divider** ([**Block**](#block)) represents a divider block in Notion. It has
+no content. It is an equivalence to
 [**MdastThematicBreak**][dfn-mdast-thematicbreak].
 
 ### `ToDo`
@@ -150,8 +150,8 @@ interface ToDo extends Block {
 }
 ```
 
-**ToDo** ([**Block**](#block)) represents to-do block in Notion. It has a
-`checked` value indicating if it's checked or not.
+**ToDo** ([**Block**](#block)) represents a to-do block in Notion. Its `checked`
+indicates if the to-do is checked or not.
 
 ### `BulletedList`
 
@@ -161,8 +161,9 @@ interface BulletedList extends Block, Parent {
 }
 ```
 
-**BulletedList** ([**Block**](#block),[**Parent**](#block)) represents bulleted
-list block in Notion. It may has children.
+**BulletedList** ([**Block**](#block), [**Parent**](#block)) represents a
+bulleted list block in Notion. It may has children. It is an equivalence to
+[**MdastList**][dfn-mdast-list] with `ordered = false`.
 
 ---
 
@@ -201,3 +202,4 @@ Tran][@phuctm97]
 [dfn-unist-tree]: https://github.com/syntax-tree/unist#tree
 [dfn-mdast-paragraph]: https://github.com/syntax-tree/mdast#paragraph
 [dfn-mdast-thematicbreak]: https://github.com/syntax-tree/mdast#thematicbreak
+[dfn-mdast-list]: https://github.com/syntax-tree/mdast#list
