@@ -172,8 +172,8 @@ bulleted list block in Notion. It may has children. It is an equivalence to
 ntast is created and maintained by the creator of [Notion Tweet] - a tool to
 write, schedule, and automate your tweets 10x easier, directly in Notion.
 
-Special thanks to @wooorm for his work on [unist], [mdast], and [unified], by
-which this project is heavily inspired.
+Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
+[mdast], and [unified], by which this project is heavily inspired.
 
 ## License
 
