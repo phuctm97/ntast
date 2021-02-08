@@ -29,7 +29,8 @@ represent different types of pages in Notion: [Page][notion-page],
   - [`BulletedList`](#bulletedlist)
 - [Content models](#content-models)
   - [`Content`](#content)
-  - [`FlowContent`](#flow-content)
+  - [`FlowContent`](#flowcontent)
+  - [`InlineContent`](#inlinecontent)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -87,14 +88,32 @@ Its `value` is a `string`.
 ### `Block`
 
 ```ts
-interface Block extends Node {
+interface Block extends UnistNode {
   id: UUID;
-  title: InlineContent[];
+  title: TitleProperty;
 }
 ```
 
-**Block** ([**Node**](#node)) represents what is famously known as a "block" in
-Notion. Each block has a unique `id` for references and a `title` content.
+**Block** ([**UnistNode**][unist-node]) represents [a block in
+Notion][notion-block]. Each block has a unique `id` and a `title` content.
+
+In Notion API:
+
+```json
+{
+  "<block-id>": {
+    "value": {
+      "id": "<block-id>",
+      "type": "<block-type>",
+      "properties": {
+        "title": [
+          /* contents */
+        ]
+      }
+    }
+  }
+}
+```
 
 ### `Page`
 
@@ -174,6 +193,12 @@ with similar characteristics together.
 type FlowContent = Text | Divider | ToDo | BulletedList;
 ```
 
+### `InlineContent`
+
+```ts
+type InlineContent = unknown;
+```
+
 ## Acknowledgements
 
 ntast is created and maintained by the creator of [Notion Tweet].
@@ -215,6 +240,8 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
   https://www.notion.so/Intro-to-databases-fd8cd2d212f74c50954c11086d85997e#5f5e4e9b5a534445bb1f941093ada5d9
 [notion-timeline]:
   https://www.notion.so/Intro-to-databases-fd8cd2d212f74c50954c11086d85997e#184b7b79134647f3a5c5ad3f01f20730
+[notion-block]:
+  https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#8c31584e7c514630b9ebb86afe1125b1
 [unist-node]: https://github.com/syntax-tree/unist#node
 [unist-parent]: https://github.com/syntax-tree/unist#parent
 [unist-child]: https://github.com/syntax-tree/unist#child
