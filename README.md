@@ -19,8 +19,8 @@ represent different types of pages in Notion: [Page][notion-page],
   - [Where this specification fits](#where-this-specification-fits)
   - [What this specification doesn't do](#what-this-specification-doesnt-do)
 - [Nodes](#nodes)
-  - [`Parent`](#parent)
   - [`Block`](#block)
+  - [`Parent`](#parent)
   - [`Page`](#page)
   - [`Text`](#text)
   - [`Divider`](#divider)
@@ -67,19 +67,6 @@ plugins **should not** directly access these snapshots.
 
 ## Nodes
 
-### `Parent`
-
-```ts
-interface Parent extends UnistParent {
-  children: Content[];
-}
-```
-
-**Parent** ([**UnistParent**][unist-parent]) represents a node in ntast
-containing other nodes (said to be [_children_][unist-child]).
-
-Its `children` are limited to only [**ntast content**](#content).
-
 ### `Block`
 
 ```ts
@@ -92,24 +79,24 @@ interface Block extends UnistNode {
 }
 ```
 
-**Block** ([**UnistNode**][unist-node]) represents [a block in
-Notion][notion-block].
+**Block** ([**UnistNode**][unist-node]) represents a node in `ntast` and [a
+block in Notion][notion-block].
 
-Each block has a unique `id`, timestamp properties, and a `__raw__` property for
-bidirectional transformation with Notion API.
+Each block has a unique `id`, timestamps, and `__raw__` data for bidirectional
+transformation with Notion API.
 
 Example:
 
 ```jsonc
 {
-  "id": "<block-id>",
-  "type": "<block-type>",
+  "id": "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
+  "type": "text",
   "version": 123,
   "createdTime": 1612532760000,
   "lastEditedTime": 1612763160000,
   "__raw__": {
-    "id": "<block-id>",
-    "type": "<block-type>",
+    "id": "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
+    "type": "text",
     "version": 123,
     "created_time": 1612532760000,
     "last_edited_time": 1612763160000
@@ -117,6 +104,19 @@ Example:
   }
 }
 ```
+
+### `Parent`
+
+```ts
+interface Parent extends UnistParent {
+  children: Block[];
+}
+```
+
+**Parent** ([**UnistParent**][unist-parent]) represents a node in ntast
+containing other nodes (said to be [_children_][unist-child]).
+
+Its `children` are limited to only [**ntast blocks**](#block).
 
 ### `Page`
 
