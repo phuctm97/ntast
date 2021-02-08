@@ -135,7 +135,7 @@ interface Page extends Block, Parent {
 **Page** ([**Block**](#block), [**Parent**](#parent)) represents [a page in
 Notion][notion-page].
 
-<p align="left"><img height="100" src="images/screenshot-subpage-0.png"></p>
+<p align="left"><img height="128" src="images/screenshot-subpage-0.png"></p>
 
 **Page** can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
 [_child_][unist-child] of another page (also known as a subpage).
@@ -172,11 +172,11 @@ interface Text extends Block {
 **Text** ([**Block**](#block)) represents [a text block in
 Notion][notion-basic-blocks].
 
-<p align="left"><img height="100" src="images/screenshot-text-0.png"></p>
+<p align="left"><img height="128" src="images/screenshot-text-0.png"></p>
 
 Example:
 
-<p align="left"><img src="images/screenshot-text-1.png"></p>
+<p align="left"><img height="32" src="images/screenshot-text-1.png"></p>
 
 Yields:
 
