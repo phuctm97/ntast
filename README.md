@@ -24,8 +24,8 @@ represent different types of pages in Notion: [Page][notion-page],
   - [`Literal`](#literal)
   - [`Page`](#page)
   - [`Text`](#text)
-  - [`Divider`](#divider)
   - [`ToDo`](#todo)
+  - [`Divider`](#divider)
   - [`BulletedList`](#bulletedlist)
 - [Content models](#content-models)
   - [`Content`](#content)
@@ -101,7 +101,7 @@ Example:
     "version": 123,
     "created_time": 1612532760000,
     "last_edited_time": 1612763160000
-    // other properties...
+    // Other properties...
   }
 }
 ```
@@ -206,6 +206,43 @@ Yields:
 };
 ```
 
+### `ToDo`
+
+```ts
+interface ToDo extends Block, Literal {
+  type: "to_do";
+  checked: boolean;
+}
+```
+
+**ToDo** ([**Block**](#block)) represents [a `To-do list` block in
+Notion][notion-basic-blocks].
+
+<p align="left"><img height="128" src="images/screenshot-todo-0.png"></p>
+
+Example:
+
+<p align="left"><img height="32" src="images/screenshot-todo-1.png"></p>
+<p align="left"><img height="32" src="images/screenshot-todo-2.png"></p>
+
+Yields:
+
+```js
+// Before
+{
+  id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
+  type: "to_do",
+  value: [["This is a "], ["todo", [["b"]]], [" item."]],
+}
+// After
+{
+  id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
+  type: "to_do",
+  value: [["This is a "], ["todo", [["b"]]], [" item."]],
+  checked: true
+}
+```
+
 ### `Divider`
 
 ```ts
@@ -217,18 +254,6 @@ interface Divider extends Omit<Block, "title"> {
 **Divider** ([**Block**](#block)) represents a divider block in Notion. It has
 no content. It is an equivalence to
 [**MdastThematicBreak**][mdast-thematicbreak].
-
-### `ToDo`
-
-```ts
-interface ToDo extends Block {
-  type: "to_do";
-  checked: boolean;
-}
-```
-
-**ToDo** ([**Block**](#block)) represents a to-do block in Notion. Its `checked`
-indicates if the to-do is checked or not.
 
 ### `BulletedList`
 
