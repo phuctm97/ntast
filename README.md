@@ -26,6 +26,8 @@ represent different types of pages in Notion: [Page][notion-page],
   - [`Text`](#text)
   - [`ToDo`](#todo)
   - [`Heading1`](#heading1)
+  - [`Heading2`](#heading2)
+  - [`Heading3`](#heading3)
   - [`Divider`](#divider)
   - [`BulletedList`](#bulletedlist)
 - [Content models](#content-models)
@@ -250,7 +252,7 @@ interface Heading1 extends Block, Literal {
 }
 ```
 
-**Heading** represents [a `Heading 1` in Notion][notion-basic-blocks].
+**Heading1** represents [a `Heading 1` in Notion][notion-basic-blocks].
 
 <p align="left"><img height="128" src="images/screenshot-h1-0.png"></p>
 
@@ -265,6 +267,58 @@ Yields:
   id: "f694bbd6-8fa4-44d4-b02c-ad05128fb277",
   type: "header",
   value: [["This is heading 1"]],
+};
+```
+
+### `Heading2`
+
+```ts
+interface Heading2 extends Block, Literal {
+  type: "sub_header";
+}
+```
+
+**Heading2** represents [a `Heading 2` in Notion][notion-basic-blocks].
+
+<p align="left"><img height="128" src="images/screenshot-h2-0.png"></p>
+
+Example:
+
+<p align="left"><img height="32" src="images/screenshot-h2-1.png"></p>
+
+Yields:
+
+```js
+{
+  id: "f694bbd6-8fa4-44d4-b02c-ad05128fb277",
+  type: "sub_header",
+  value: [["This is heading 2"]],
+};
+```
+
+### `Heading3`
+
+```ts
+interface Heading3 extends Block, Literal {
+  type: "sub_sub_header";
+}
+```
+
+**Heading3** represents [a `Heading 3` in Notion][notion-basic-blocks].
+
+<p align="left"><img height="128" src="images/screenshot-h3-0.png"></p>
+
+Example:
+
+<p align="left"><img height="32" src="images/screenshot-h3-1.png"></p>
+
+Yields:
+
+```js
+{
+  id: "f694bbd6-8fa4-44d4-b02c-ad05128fb277",
+  type: "sub_sub_header",
+  value: [["This is heading 3"]],
 };
 ```
 
