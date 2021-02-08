@@ -93,7 +93,7 @@ blocks between ntast and Notion API schemas.
 
 Example:
 
-```json
+```jsonc
 {
   "id": "<block-id>",
   "version": 123,
