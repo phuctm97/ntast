@@ -80,25 +80,34 @@ interface Block extends UnistNode {
   version: number;
   createdTime: number;
   lastEditedTime: number;
+  __raw__: unknown;
 }
 ```
 
 **Block** ([**UnistNode**][unist-node]) represents [a block in
 Notion][notion-block].
 
-Each block has a unique `id` and history-related properties.
+Each block has a unique `id`, properties for history management, and a `__raw__`
+property holding original data from Notion API. `__raw__` is useful to transform
+blocks between ntast and Notion API schemas.
 
-In Notion API:
+Example:
 
 ```json
 {
-  "<block-id>": {
+  "id": "<block-id>",
+  "version": 123,
+  "createdTime": 1612532760000,
+  "lastEditedTime": 1612763160000,
+  "__raw__": {
+    "role": "reader",
     "value": {
       "id": "<block-id>",
       "type": "<block-type>",
       "version": 123,
       "created_time": 1612532760000,
       "last_edited_time": 1612763160000
+      // other properties...
     }
   }
 }
