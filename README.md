@@ -28,8 +28,8 @@ represent different types of pages in Notion: [Page][notion-page],
   - [`Heading1`](#heading1)
   - [`Heading2`](#heading2)
   - [`Heading3`](#heading3)
-  - [`Divider`](#divider)
   - [`BulletedList`](#bulletedlist)
+  - [`Divider`](#divider)
 - [Content models](#content-models)
   - [`Content`](#content)
   - [`FlowContent`](#flowcontent)
@@ -252,13 +252,13 @@ interface Heading1 extends Block, Literal {
 }
 ```
 
-**Heading1** represents [a `Heading 1` in Notion][notion-basic-blocks].
+**Heading1** represents [a `Heading 1` block in Notion][notion-basic-blocks].
 
 <p align="left"><img height="128" src="images/screenshot-h1-0.png"></p>
 
 Example:
 
-<p align="left"><img height="32" src="images/screenshot-h1-1.png"></p>
+<p align="left"><img height="48" src="images/screenshot-h1-1.png"></p>
 
 Yields:
 
@@ -278,13 +278,13 @@ interface Heading2 extends Block, Literal {
 }
 ```
 
-**Heading2** represents [a `Heading 2` in Notion][notion-basic-blocks].
+**Heading2** represents [a `Heading 2` block in Notion][notion-basic-blocks].
 
 <p align="left"><img height="128" src="images/screenshot-h2-0.png"></p>
 
 Example:
 
-<p align="left"><img height="32" src="images/screenshot-h2-1.png"></p>
+<p align="left"><img height="38" src="images/screenshot-h2-1.png"></p>
 
 Yields:
 
@@ -304,7 +304,7 @@ interface Heading3 extends Block, Literal {
 }
 ```
 
-**Heading3** represents [a `Heading 3` in Notion][notion-basic-blocks].
+**Heading3** represents [a `Heading 3` block in Notion][notion-basic-blocks].
 
 <p align="left"><img height="128" src="images/screenshot-h3-0.png"></p>
 
@@ -322,6 +322,60 @@ Yields:
 };
 ```
 
+### `BulletedList`
+
+```ts
+interface BulletedList extends Block, Literal, Parent {
+  type: "bulleted_list";
+}
+```
+
+**BulletedList** represents [a `Bulleted list` block in
+Notion][notion-basic-blocks]. It may has children.
+
+<p align="left"><img height="128" src="images/screenshot-ul-0.png"></p>
+
+Example:
+
+<p align="left"><img height="100" src="images/screenshot-ul-1.png"></p>
+
+Yields:
+
+```js
+[
+  {
+    id: "dd130b72-3d53-42ea-bf3b-45e95c8e8c2d",
+    type: "bulleted_list",
+    value: [
+      ["Heading 1", [["c"]]],
+      [": The largest heading, can be easily added with shortcut "],
+      ["/h1", [["c"]]],
+      ["."],
+    ],
+  },
+  {
+    id: "093db819-617f-47b0-b776-48abf0ff2792",
+    type: "bulleted_list",
+    value: [
+      ["Heading 2", [["c"]]],
+      [": The medium-sized heading, can be easily added with shortcut "],
+      ["/h2", [["c"]]],
+      ["."],
+    ],
+  },
+  {
+    id: "b7d35804-e262-4d99-b039-8372470262f6",
+    type: "bulleted_list",
+    value: [
+      ["Heading 3", [["c"]]],
+      [": The smallest heading, can be easily added with shortcut "],
+      ["/h3", [["c"]]],
+      ["."],
+    ],
+  },
+];
+```
+
 ### `Divider`
 
 ```ts
@@ -333,18 +387,6 @@ interface Divider extends Omit<Block, "title"> {
 **Divider** ([**Block**](#block)) represents a divider block in Notion. It has
 no content. It is an equivalence to
 [**MdastThematicBreak**][mdast-thematicbreak].
-
-### `BulletedList`
-
-```ts
-interface BulletedList extends Block, Parent {
-  type: "bulleted_list";
-}
-```
-
-**BulletedList** ([**Block**](#block), [**Parent**](#block)) represents a
-bulleted list block in Notion. It may has children. It is an equivalence to
-[**MdastList**][mdast-list] with `ordered = false`.
 
 ## Content models
 
