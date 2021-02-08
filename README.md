@@ -41,29 +41,29 @@ This document defines a format, written in [TypeScript], for representing
 ### Where this specification fits
 
 ntast extends [unist], a format for syntax trees, to benefit from its [ecosystem
-of utilities][utilities].
+of utilities][unist-utils].
 
-ntast relates to [JavaScript] in that it has a rich ecosystem of utilities for
+ntast relates to [Notion] and Notion API in that it is designed to enable
+reading from, applying complex transformations, and writing to Notion. It has a
+set of utilities to transform between ntast syntax trees and Notion API schemas.
+
+ntast relates to [unified] and unified-based projects in that it is designed to
+work throughout their ecosystems.
+
+ntast relates to [JavaScript] in that it has an ecosystem of utilities for
 working with compliant syntax trees in JavaScript. However, ntast is not limited
 to JavaScript and can be used in other programming languages.
-
-ntast relates to [unified] and unified-based projects in that ntast syntax trees
-can be used throughout their ecosystems.
-
-ntast relates to [Notion] and Notion API in that ntast syntax trees are designed
-to enable both reading from and writing to Notion API. Additionally, it has a
-set of utilities to transform data between two specifications.
 
 ### What this specification doesn't do
 
 ntast focuses on only content and doesn't work with Notion-application data,
-like _Workspaces_, _Accounts_, _Members_, _Permissions_, and similar settings.
-Ecosystem plugins may extend functionalities for these data using [unified
-API][unified-api], Notion API, and relevant documentation.
+such as _Workspaces_, _Accounts_, _Members_, _Permissions_, and similar
+settings. Ecosystem plugins may extend functionalities for these data using
+Notion API.
 
 ntast syntax trees may keep snapshots of Notion-application data to make
-transformations possible, but that is the only purpose, ecosystem plugins
-shouldn't use these snapshots.
+bidirectional transformation possible and that is the only purpose. Ecosystem
+plugins **should not** directly access these snapshots.
 
 ## Nodes
 
@@ -95,8 +95,8 @@ interface Block extends UnistNode {
 **Block** ([**UnistNode**][unist-node]) represents [a block in
 Notion][notion-block].
 
-Each block has a unique `id`, properties for history management, and a `__raw__`
-property for transforming data from and to Notion API.
+Each block has a unique `id`, timestamp properties, and a `__raw__` property for
+bidirectional transformation with Notion API.
 
 Example:
 
@@ -283,7 +283,6 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 [syntax-tree]: https://github.com/syntax-tree/unist#syntax-tree
 [unist]: https://github.com/syntax-tree/unist
 [mdast]: https://github.com/syntax-tree/mdast
-[utilities]: https://github.com/syntax-tree/unist#list-of-utilities
 [javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 [typescript]: https://www.typescriptlang.org
 [notion-page]:
@@ -304,6 +303,7 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
   https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#8c31584e7c514630b9ebb86afe1125b1
 [notion-basic-blocks]:
   https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#73916b435b674a85b10a165e96d1114e
+[unist-utils]: https://github.com/syntax-tree/unist#list-of-utilities
 [unist-node]: https://github.com/syntax-tree/unist#node
 [unist-parent]: https://github.com/syntax-tree/unist#parent
 [unist-child]: https://github.com/syntax-tree/unist#child
