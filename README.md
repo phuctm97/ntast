@@ -25,6 +25,7 @@ represent different types of pages in Notion: [Page][notion-page],
   - [`Page`](#page)
   - [`Text`](#text)
   - [`ToDo`](#todo)
+  - [`Heading1`](#heading1)
   - [`Divider`](#divider)
   - [`BulletedList`](#bulletedlist)
 - [Content models](#content-models)
@@ -177,8 +178,7 @@ interface Text extends Block, Literal {
 }
 ```
 
-**Text** ([**Block**](#block)) represents [a `Text` block in
-Notion][notion-basic-blocks].
+**Text** represents [a `Text` block in Notion][notion-basic-blocks].
 
 <p align="left"><img height="128" src="images/screenshot-text-0.png"></p>
 
@@ -215,8 +215,7 @@ interface ToDo extends Block, Literal {
 }
 ```
 
-**ToDo** ([**Block**](#block)) represents [a `To-do list` block in
-Notion][notion-basic-blocks].
+**ToDo** represents [a `To-do list` block in Notion][notion-basic-blocks].
 
 <p align="left"><img height="128" src="images/screenshot-todo-0.png"></p>
 
@@ -241,6 +240,32 @@ Yields:
   value: [["This is a "], ["todo", [["b"]]], [" item."]],
   checked: true
 }
+```
+
+### `Heading1`
+
+```ts
+interface Heading1 extends Block, Literal {
+  type: "header";
+}
+```
+
+**Heading** represents [a `Heading 1` in Notion][notion-basic-blocks].
+
+<p align="left"><img height="128" src="images/screenshot-h1-0.png"></p>
+
+Example:
+
+<p align="left"><img height="32" src="images/screenshot-h1-1.png"></p>
+
+Yields:
+
+```js
+{
+  id: "f694bbd6-8fa4-44d4-b02c-ad05128fb277",
+  type: "header",
+  value: [["This is heading 1"]],
+};
 ```
 
 ### `Divider`
