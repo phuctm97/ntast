@@ -20,7 +20,6 @@ represent different types of pages in Notion: [Page][notion-page],
   - [What this specification doesn't do](#what-this-specification-doesnt-do)
 - [Nodes](#nodes)
   - [`Parent`](#parent)
-  - [`Literal`](#literal)
   - [`Block`](#block)
   - [`Page`](#page)
   - [`Text`](#text)
@@ -36,8 +35,8 @@ represent different types of pages in Notion: [Page][notion-page],
 
 ## Introduction
 
-This document defines a format for representing [Notion] pages as [abstract
-syntax trees][syntax-tree]. This specification is written in [TypeScript].
+This document defines a format, written in [TypeScript], for representing
+[Notion pages][notion-page] as [abstract syntax trees][syntax-tree].
 
 ### Where this specification fits
 
@@ -53,9 +52,10 @@ trees can be used throughout their ecosystems.
 
 ### What this specification doesn't do
 
-ntast focuses on only content. Notion-application data structures like
-workspaces, users, permissions, settings, etc, aren't handled by ntast.
-Ecosystem plugins may extend functionalities using these data from Notion API.
+ntast focuses on only content and is ignorant of Notion-application data, like
+_Workspaces_, _Accounts_, _Members_, _Permissions_, and similar settings.
+Ecosystem plugins may extend functionalities for these data using [unified
+API][unified-api], Notion API, and relevant documentation.
 
 ## Nodes
 
@@ -72,30 +72,16 @@ containing other nodes (said to be [_children_][unist-child]).
 
 Its `children` are limited to only [**ntast content**](#content).
 
-### `Literal`
-
-```ts
-interface Literal extends UnistLiteral {
-  value: string;
-}
-```
-
-**Literal** ([**UnistLiteral**][unist-literal]) represents a node in ntast
-containing a value.
-
-Its `value` is a `string`.
-
 ### `Block`
 
 ```ts
 interface Block extends UnistNode {
   id: UUID;
-  title: TitleProperty;
 }
 ```
 
 **Block** ([**UnistNode**][unist-node]) represents [a block in
-Notion][notion-block]. Each block has a unique `id` and a `title` content.
+Notion][notion-block]. Each block has a unique `id` for references.
 
 In Notion API:
 
@@ -104,12 +90,7 @@ In Notion API:
   "<block-id>": {
     "value": {
       "id": "<block-id>",
-      "type": "<block-type>",
-      "properties": {
-        "title": [
-          /* contents */
-        ]
-      }
+      "type": "<block-type>"
     }
   }
 }
@@ -120,14 +101,16 @@ In Notion API:
 ```ts
 interface Page extends Block, Parent {
   type: "page";
+  title: InlineContent[];
+  children: Block[];
 }
 ```
 
-**Page** ([**Block**](#block), [**Parent**](#parent)) represents a page in
-Notion.
+**Page** ([**Block**](#block), [**Parent**](#parent)) represents [a page in
+Notion][notion-page].
 
 **Page** can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
-[_child_][unist-child] of another [**Page**](#page) (said to be a subpage).
+[_child_][unist-child] of another page (also known as a subpage).
 
 ### `Text`
 
@@ -181,7 +164,7 @@ bulleted list block in Notion. It may has children. It is an equivalence to
 ### `Content`
 
 ```ts
-type Content = FlowContent;
+type Content = FlowContent | InlineContent;
 ```
 
 Each node in ntast falls into one or more categories of content that group nodes
@@ -190,7 +173,7 @@ with similar characteristics together.
 ### `FlowContent`
 
 ```ts
-type FlowContent = Text | Divider | ToDo | BulletedList;
+type FlowContent = Block | Text | Divider | ToDo | BulletedList;
 ```
 
 ### `InlineContent`
@@ -220,6 +203,7 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 [notion tweet]: https://notiontweet.app
 [notion]: https://notion.so
 [unified]: https://github.com/unifiedjs/unified
+[unified-api]: https://github.com/unifiedjs/unified#description
 [syntax-tree]: https://github.com/syntax-tree/unist#syntax-tree
 [unist]: https://github.com/syntax-tree/unist
 [mdast]: https://github.com/syntax-tree/mdast
