@@ -19,7 +19,6 @@ represent different types of pages in Notion: [Page][notion-page],
   - [Where this specification fits](#where-this-specification-fits)
   - [What this specification doesn't do](#what-this-specification-doesnt-do)
 - [Nodes](#nodes)
-  - [`Node`](#node)
   - [`Parent`](#parent)
   - [`Literal`](#literal)
   - [`Block`](#block)
@@ -28,6 +27,9 @@ represent different types of pages in Notion: [Page][notion-page],
   - [`Divider`](#divider)
   - [`ToDo`](#todo)
   - [`BulletedList`](#bulletedlist)
+- [Content models](#content-models)
+  - [`Content`](#content)
+  - [`FlowContent`](#flow-content)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -50,36 +52,24 @@ trees can be used throughout their ecosystems.
 
 ### What this specification doesn't do
 
-ntast focuses on only content. Notion-application data structures like
-workspaces, users, permissions, settings, etc, aren't handled by ntast.
-Ecosystem plugins can process and extend functionalities using these data from
-Notion API.
+ntast focuses on content. Notion-application data structures like workspaces,
+users, permissions, settings, etc, aren't handled by ntast. Ecosystem plugins
+may extend functionalities using these data from Notion API.
 
 ## Nodes
-
-### `Node`
-
-```ts
-interface Node extends UnistNode {
-  type: NtastType;
-}
-```
-
-**Node** ([**UnistNode**][unist-node]) represents a node in ntast. It
-differentiates a node in ntast with nodes in other [unist]-based specifications.
 
 ### `Parent`
 
 ```ts
 interface Parent extends UnistParent {
-  children: Node[];
+  children: Content[];
 }
 ```
 
 **Parent** ([**UnistParent**][unist-parent]) represents a node in ntast
-containing other [nodes](#node) (said to be [children][unist-child]).
+containing other [nodes](#nodes) (said to be [children][unist-child]).
 
-Its content is limited to only ntast nodes.
+Its content is limited to only [**ntast content**](#content).
 
 ### `Literal`
 
@@ -167,7 +157,22 @@ interface BulletedList extends Block, Parent {
 bulleted list block in Notion. It may has children. It is an equivalence to
 [**MdastList**][mdast-list] with `ordered = false`.
 
----
+## Content models
+
+### `Content`
+
+```ts
+type Content = FlowContent;
+```
+
+Each node in ntast falls into one or more categories of content that group nodes
+with similar characteristics together.
+
+### `FlowContent`
+
+```ts
+type FlowContent = Text | Divider | ToDo | BulletedList;
+```
 
 ## Acknowledgements
 
