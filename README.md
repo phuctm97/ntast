@@ -331,7 +331,7 @@ interface BulletedList extends Block, Literal, Parent {
 ```
 
 **BulletedList** represents [a `Bulleted list` block in
-Notion][notion-basic-blocks]. It may has children.
+Notion][notion-basic-blocks]. It may have children.
 
 <p align="left"><img height="128" src="images/screenshot-ul-0.png"></p>
 
