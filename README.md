@@ -21,6 +21,7 @@ represent different types of pages in Notion: [Page][notion-page],
 - [Nodes](#nodes)
   - [`Block`](#block)
   - [`Parent`](#parent)
+  - [`Literal`](#literal)
   - [`Page`](#page)
   - [`Text`](#text)
   - [`Divider`](#divider)
@@ -79,8 +80,8 @@ interface Block extends UnistNode {
 }
 ```
 
-**Block** ([**UnistNode**][unist-node]) represents a node in `ntast` and [a
-block in Notion][notion-block].
+**Block** ([**UnistNode**][unist-node]) represents a node in ntast and [a block
+in Notion][notion-block].
 
 Each block has a unique `id`, timestamps, and `__raw__` data for bidirectional
 transformation with Notion API.
@@ -116,32 +117,42 @@ interface Parent extends UnistParent {
 **Parent** ([**UnistParent**][unist-parent]) represents a node in ntast
 containing other nodes (said to be [_children_][unist-child]).
 
-Its `children` are limited to only [**ntast blocks**](#block).
+Its `children` are limited to only [**Block**(s)](#block).
+
+### `Literal`
+
+```ts
+interface Literal extends UnistLiteral {
+  value: Inline[];
+}
+```
+
+**Literal** ([**UnistLiteral**][unist-literal]) represents a node in ntast
+containing a value.
+
+Its `value` is an ordered list of [**Inline object**(s)](#inline).
 
 ### `Page`
 
 ```ts
-interface Page extends Block, Parent {
+interface Page extends Block, Parent, Literal {
   type: "page";
-  title: Inline[];
   icon?: string;
   cover?: string;
-  children?: Block[];
 }
 ```
 
-**Page** ([**Block**](#block), [**Parent**](#parent)) represents [a page in
-Notion][notion-page].
+**Page** represents [a page in Notion][notion-page].
+
+A page can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
+[_child_][unist-child] of another page (also known as a subpage).
 
 <p align="left"><img height="128" src="images/screenshot-subpage-0.png"></p>
 
-**Page** can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
-[_child_][unist-child] of another page (also known as a subpage).
-
 A subpage may have its `children` lazy loaded:
 
-- `undefined` means `children` wasn't loaded.
-- `[]` means it was loaded and is empty.
+- `children = undefined` means `children` wasn't loaded.
+- `children = []` means it was loaded and is empty.
 
 Example:
 
@@ -153,7 +164,7 @@ Yields:
 {
   id: "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
   type: "page",
-  title: [["This is a subpage"]],
+  value: [["This is a subpage"]],
   icon: "☺️"
 }
 ```
