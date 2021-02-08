@@ -118,8 +118,10 @@ Example:
 ```ts
 interface Page extends Block, Parent {
   type: "page";
-  title: InlineContent[];
-  children: Block[];
+  title: Inline[];
+  icon?: string;
+  cover?: string;
+  children?: Block[];
 }
 ```
 
@@ -128,6 +130,25 @@ Notion][notion-page].
 
 **Page** can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
 [_child_][unist-child] of another page (also known as a subpage).
+
+A subpage may have its `children` lazy loaded:
+
+- `undefined` means `children` wasn't loaded.
+- `[]` means it was loaded and is empty.
+
+Example:
+
+<p align="left"><img height="32" src="images/screenshot-1.png"></p>
+
+Yields:
+
+```js
+{
+  type: "page",
+  title: [["This is a subpage"]],
+  icon: "☺️"
+}
+```
 
 ### `Text`
 
