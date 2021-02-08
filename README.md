@@ -47,14 +47,14 @@ ntast relates to [JavaScript] in that it has a rich ecosystem of utilities for
 working with compliant syntax trees in JavaScript. However, ntast is not limited
 to JavaScript and can be used in other programming languages.
 
-ntast relates to the [unified] and [unified]-based projects in that ntast syntax
+ntast relates to the [unified] and unified-based projects in that ntast syntax
 trees can be used throughout their ecosystems.
 
 ### What this specification doesn't do
 
-ntast focuses on content. Notion-application data structures like workspaces,
-users, permissions, settings, etc, aren't handled by ntast. Ecosystem plugins
-may extend functionalities using these data from Notion API.
+ntast focuses on only content. Notion-application data structures like
+workspaces, users, permissions, settings, etc, aren't handled by ntast.
+Ecosystem plugins may extend functionalities using these data from Notion API.
 
 ## Nodes
 
@@ -67,9 +67,9 @@ interface Parent extends UnistParent {
 ```
 
 **Parent** ([**UnistParent**][unist-parent]) represents a node in ntast
-containing other [nodes](#nodes) (said to be [children][unist-child]).
+containing other nodes (said to be [_children_][unist-child]).
 
-Its content is limited to only [**ntast content**](#content).
+Its `children` are limited to only [**ntast content**](#content).
 
 ### `Literal`
 
@@ -107,8 +107,8 @@ interface Page extends Block, Parent {
 **Page** ([**Block**](#block), [**Parent**](#parent)) represents a page in
 Notion.
 
-**Page** can be the [root][unist-root] of a [tree][unist-tree] or a
-[child][unist-child] of another [page](#page) (also known as a subpage).
+**Page** can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
+[_child_][unist-child] of another [**Page**](#page) (said to be a subpage).
 
 ### `Text`
 
@@ -199,7 +199,7 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 [unist]: https://github.com/syntax-tree/unist
 [mdast]: https://github.com/syntax-tree/mdast
 [utilities]: https://github.com/syntax-tree/unist#list-of-utilities
-[javascript]: https://www.ecma-international.org/ecma-262/9.0/index.html
+[javascript]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 [typescript]: https://www.typescriptlang.org
 [notion-page]:
   https://www.notion.so/Create-a-new-page-6c3fe9aad94749099ea4bdfc072e5f97
