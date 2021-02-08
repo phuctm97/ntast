@@ -34,7 +34,7 @@ represent different types of pages in Notion: [Page][notion-page],
 ## Introduction
 
 This document defines a format for representing [Notion] pages as [abstract
-syntax trees][syntax-tree]. This specification is written in [Typescript].
+syntax trees][syntax-tree]. This specification is written in [TypeScript].
 
 ### Where this specification fits
 
@@ -171,8 +171,10 @@ bulleted list block in Notion. It may has children. It is an equivalence to
 
 ## Acknowledgements
 
-ntast is created and maintained by the creator of [Notion Tweet] - A tool to
-write, schedule, and automate your tweets 10x easier, directly in Notion.
+ntast is created and maintained by the creator of [Notion Tweet].
+
+> [Notion Tweet] is a tool that enables writing, scheduling, and automating your
+> tweets 10x easier and faster, directly in Notion.
 
 Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 [mdast], and [unified], by which this project is heavily inspired.
@@ -191,7 +193,6 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 [syntax-tree]: https://github.com/syntax-tree/unist#syntax-tree
 [unist]: https://github.com/syntax-tree/unist
 [mdast]: https://github.com/syntax-tree/mdast
-[webidl]: https://heycam.github.io/webidl/
 [utilities]: https://github.com/syntax-tree/unist#list-of-utilities
 [javascript]: https://www.ecma-international.org/ecma-262/9.0/index.html
 [typescript]: https://www.typescriptlang.org
