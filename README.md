@@ -103,19 +103,17 @@ Example:
 ```jsonc
 {
   "id": "<block-id>",
+  "type": "<block-type>",
   "version": 123,
   "createdTime": 1612532760000,
   "lastEditedTime": 1612763160000,
   "__raw__": {
-    "role": "reader",
-    "value": {
-      "id": "<block-id>",
-      "type": "<block-type>",
-      "version": 123,
-      "created_time": 1612532760000,
-      "last_edited_time": 1612763160000
-      // other properties...
-    }
+    "id": "<block-id>",
+    "type": "<block-type>",
+    "version": 123,
+    "created_time": 1612532760000,
+    "last_edited_time": 1612763160000
+    // other properties...
   }
 }
 ```
