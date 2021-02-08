@@ -47,15 +47,23 @@ ntast relates to [JavaScript] in that it has a rich ecosystem of utilities for
 working with compliant syntax trees in JavaScript. However, ntast is not limited
 to JavaScript and can be used in other programming languages.
 
-ntast relates to the [unified] and unified-based projects in that ntast syntax
-trees can be used throughout their ecosystems.
+ntast relates to [unified] and unified-based projects in that ntast syntax trees
+can be used throughout their ecosystems.
+
+ntast relates to [Notion] and Notion API in that ntast syntax trees are designed
+to enable both reading from and writing to Notion API. Additionally, it has a
+set of utilities to transform data between two specifications.
 
 ### What this specification doesn't do
 
-ntast focuses on only content and is ignorant of Notion-application data, like
-_Workspaces_, _Accounts_, _Members_, _Permissions_, and similar settings.
+ntast focuses on only content and doesn't work with Notion-application data,
+like _Workspaces_, _Accounts_, _Members_, _Permissions_, and similar settings.
 Ecosystem plugins may extend functionalities for these data using [unified
 API][unified-api], Notion API, and relevant documentation.
+
+ntast syntax trees may keep snapshots of Notion-application data to make
+transformations possible, but that is the only purpose, ecosystem plugins
+shouldn't use these snapshots.
 
 ## Nodes
 
@@ -88,8 +96,7 @@ interface Block extends UnistNode {
 Notion][notion-block].
 
 Each block has a unique `id`, properties for history management, and a `__raw__`
-property holding original data from Notion API. `__raw__` is useful to transform
-blocks between ntast and Notion API schemas.
+property for transforming data from and to Notion API.
 
 Example:
 
