@@ -80,8 +80,8 @@ interface Block extends UnistNode {
 }
 ```
 
-**Block** ([**UnistNode**][unist-node]) represents a node in ntast and [a block
-in Notion][notion-block].
+**Block** ([**UnistNode**][unist-node]) represents a node in ntast and [a
+content block in Notion][notion-block].
 
 Each block has a unique `id`, timestamps, and `__raw__` data for bidirectional
 transformation with Notion API.
@@ -142,7 +142,7 @@ interface Page extends Block, Parent, Literal {
 }
 ```
 
-**Page** represents [a page in Notion][notion-page].
+**Page** represents [a `Page` in Notion][notion-page].
 
 A page can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
 [_child_][unist-child] of another page (also known as a subpage).
@@ -151,7 +151,7 @@ A page can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
 
 A subpage may have its `children` lazy loaded:
 
-- `children = undefined` means `children` wasn't loaded.
+- `children = undefined` means it wasn't loaded.
 - `children = []` means it was loaded and is empty.
 
 Example:
@@ -172,13 +172,12 @@ Yields:
 ### `Text`
 
 ```ts
-interface Text extends Block {
+interface Text extends Block, Literal {
   type: "text";
-  children: Inline[];
 }
 ```
 
-**Text** ([**Block**](#block)) represents [a text block in
+**Text** ([**Block**](#block)) represents [a `Text` block in
 Notion][notion-basic-blocks].
 
 <p align="left"><img height="128" src="images/screenshot-text-0.png"></p>
@@ -193,8 +192,7 @@ Yields:
 {
   id: "333f9503-77f2-45b3-92df-89e2094fb354",
   type: "text",
-  version: 60,
-  children: [
+  value: [
     ["Tools you're familiar with will just work: "],
     ["bold", [["b"]]],
     [", "],
