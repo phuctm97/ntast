@@ -128,6 +128,8 @@ interface Page extends Block, Parent {
 **Page** ([**Block**](#block), [**Parent**](#parent)) represents [a page in
 Notion][notion-page].
 
+<p align="left"><img height="100" src="images/screenshot-subpage-0.png"></p>
+
 **Page** can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
 [_child_][unist-child] of another page (also known as a subpage).
 
@@ -138,12 +140,13 @@ A subpage may have its `children` lazy loaded:
 
 Example:
 
-<p align="left"><img height="32" src="images/screenshot-1.png"></p>
+<p align="left"><img height="32" src="images/screenshot-subpage-1.png"></p>
 
 Yields:
 
 ```js
 {
+  id: "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
   type: "page",
   title: [["This is a subpage"]],
   icon: "☺️"
@@ -155,11 +158,39 @@ Yields:
 ```ts
 interface Text extends Block {
   type: "text";
+  children: Inline[];
 }
 ```
 
-**Text** ([**Block**](#block)) represents a text block in Notion. It is an
-equivalence to [**MdastParagraph**][mdast-paragraph].
+**Text** ([**Block**](#block)) represents [a text block in
+Notion][notion-basic-blocks].
+
+<p align="left"><img height="100" src="images/screenshot-text-0.png"></p>
+
+Example:
+
+<p align="left"><img src="images/screenshot-text-1.png"></p>
+
+Yields:
+
+```js
+{
+  id: "333f9503-77f2-45b3-92df-89e2094fb354",
+  type: "text",
+  version: 60,
+  children: [
+    ["Tools you're familiar with will just work: "],
+    ["bold", [["b"]]],
+    [", "],
+    ["italic", [["i"], ["b"]]],
+    [", "],
+    ["strikethrough", [["s"]]],
+    [", "],
+    ["code", [["c"]]],
+    [", and more."],
+  ],
+};
+```
 
 ### `Divider`
 
@@ -264,6 +295,8 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
   https://www.notion.so/Intro-to-databases-fd8cd2d212f74c50954c11086d85997e#184b7b79134647f3a5c5ad3f01f20730
 [notion-block]:
   https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#8c31584e7c514630b9ebb86afe1125b1
+[notion-basic-blocks]:
+  https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#73916b435b674a85b10a165e96d1114e
 [unist-node]: https://github.com/syntax-tree/unist#node
 [unist-parent]: https://github.com/syntax-tree/unist#parent
 [unist-child]: https://github.com/syntax-tree/unist#child
