@@ -6,9 +6,9 @@
 
 ---
 
-**ntast** is a specification for representing [Notion] pages in [syntax
-trees][syntax-tree]. It implements the [**unist**][unist] specification. It can
-represent different types of pages in Notion: [Page][notion-page],
+**ntast** is a specification for representing [**Notion**][notion] pages in
+[syntax trees][syntax-tree]. It implements the [**unist**][unist] specification.
+It can represent different types of pages in Notion: [Page][notion-page],
 [Table][notion-table], [Board][notion-board], [List][notion-list],
 [Calendar][notion-calendar], [Gallery][notion-gallery], and
 [Timeline][notion-timeline].
