@@ -309,7 +309,7 @@ interface BulletedList extends Block, Literal, Parent {
 ```
 
 **BulletedList** represents [a `Bulleted list` block in
-Notion][notion-basic-blocks]. It may have children.
+Notion][notion-basic-blocks]. It can have children.
 
 <p align="left"><img height="128" src="images/ul-0.png"></p>
 
@@ -330,6 +330,7 @@ Yields:
       ["/h1", [["c"]]],
       ["."],
     ],
+    children: [],
   },
   {
     id: "093db819-617f-47b0-b776-48abf0ff2792",
@@ -340,6 +341,7 @@ Yields:
       ["/h2", [["c"]]],
       ["."],
     ],
+    children: [],
   },
   {
     id: "b7d35804-e262-4d99-b039-8372470262f6",
@@ -350,6 +352,7 @@ Yields:
       ["/h3", [["c"]]],
       ["."],
     ],
+    children: [],
   },
 ];
 ```
@@ -363,7 +366,7 @@ interface NumberedList extends Block, Literal, Parent {
 ```
 
 **NumberedList** represents [a `Numbered list` block in
-Notion][notion-basic-blocks]. It may have children.
+Notion][notion-basic-blocks]. It can have children.
 
 <p align="left"><img height="128" src="images/ol-0.png"></p>
 
@@ -379,16 +382,19 @@ Yields:
     id: "a405f18e-978e-4c80-9055-1def35f84b47",
     type: "numbered_list",
     value: [["This is an item"]],
+    children: [],
   },
   {
     id: "385a10b8-f1fa-49b0-a704-02a109c92953",
     type: "numbered_list",
     value: [["This is the second item"]],
+    children: [],
   },
   {
     id: "8c6225e1-78b1-4e8d-b658-adc6e2b045ea",
     type: "numbered_list",
     value: [["This is the third item"]],
+    children: [],
   },
 ];
 ```
@@ -402,7 +408,7 @@ interface ToggleList extends Block, Literal, Parent {
 ```
 
 **ToggleList** represents [a `Toggle list` block in
-Notion][notion-basic-blocks]. It may have children.
+Notion][notion-basic-blocks]. It can have children.
 
 <p align="left"><img height="128" src="images/toggle-0.png"></p>
 
