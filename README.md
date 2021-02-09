@@ -38,6 +38,7 @@ It can represent different types of pages in Notion: [Page][notion-page],
 - [Content formats](#content-formats)
   - [`Inline`](#inline)
   - [`Format`](#format)
+  - [`Color`](#color)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -556,8 +557,8 @@ Yields:
 type Inline = [string, Format[]?];
 ```
 
-**Inline** represents [stylable][notion-styling] [inline content][notion-inline]
-in Notion.
+**Inline** represents a [stylable][notion-styling] [inline
+content][notion-inline] in Notion.
 
 It contains a `string` content and optional [**format**(s)](#format).
 
@@ -635,8 +636,34 @@ type DateFormat = [
 ];
 ```
 
-**Format**(s) represents additional information and metadata to display inline
-content.
+**Format**(s) represents additional information and metadata to display an
+[**inline content**](#inline).
+
+### `Color`
+
+```ts
+type Color =
+  | "gray"
+  | "brown"
+  | "orange"
+  | "yellow"
+  | "teal"
+  | "blue"
+  | "purple"
+  | "pink"
+  | "red"
+  | "gray_background"
+  | "brown_background"
+  | "orange_background"
+  | "yellow_background"
+  | "teal_background"
+  | "blue_background"
+  | "purple_background"
+  | "pink_background"
+  | "red_background";
+```
+
+**Color** represents supported colors in Notion.
 
 ## Acknowledgements
 
