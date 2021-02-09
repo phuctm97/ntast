@@ -207,19 +207,19 @@ Example:
 Yields:
 
 ```js
-// First
-{
-  id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
-  type: "to_do",
-  value: [["This is a "], ["todo", [["b"]]], [" item."]],
-}
-// Second
-{
-  id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
-  type: "to_do",
-  value: [["This is a "], ["todo", [["b"]]], [" item."]],
-  checked: true
-}
+[
+  {
+    id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
+    type: "to_do",
+    value: [["This is a "], ["todo", [["b"]]], [" item."]],
+  },
+  {
+    id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
+    type: "to_do",
+    value: [["This is a "], ["todo", [["b"]]], [" item."]],
+    checked: true,
+  },
+];
 ```
 
 ### `Heading1`
