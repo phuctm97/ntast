@@ -36,7 +36,7 @@ specification. It can represent different types of pages in Notion:
   - [`LinkToPage`](#linktopage)
   - [`Callout`](#callout)
 - [Content formats](#content-formats)
-  - [`Inline`](#inline)
+  - [`Value`](#value)
   - [`Format`](#format)
   - [`Color`](#color)
 - [Acknowledgements](#acknowledgements)
