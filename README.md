@@ -452,14 +452,24 @@ Yields:
 ### `Divider`
 
 ```ts
-interface Divider extends Omit<Block, "title"> {
+interface Divider extends Block {
   type: "divider";
 }
 ```
 
-**Divider** ([**Block**](#block)) represents a divider block in Notion. It has
-no content. It is an equivalence to
-[**MdastThematicBreak**][mdast-thematicbreak].
+**Divider** represents [a `Divider` block in Notion][notion-basic-blocks]. It
+has no content.
+
+<p align="left"><img height="128" src="images/divider-0.png"></p>
+
+Yields:
+
+```js
+{
+  id: "95ee567a-527f-4020-aa6a-e4c170de031c",
+  type: "divider",
+};
+```
 
 ## Content models
 
