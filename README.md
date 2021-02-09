@@ -30,6 +30,7 @@ It can represent different types of pages in Notion: [Page][notion-page],
   - [`Heading3`](#heading3)
   - [`BulletedList`](#bulletedlist)
   - [`NumberedList`](#numberedlist)
+  - [`ToggleList`](#togglelist)
   - [`Quote`](#quote)
   - [`Divider`](#divider)
   - [`LinkToPage`](#linktopage)
@@ -418,6 +419,40 @@ Yields:
     value: [["This is the third item"]],
   },
 ];
+```
+
+## `ToggleList`
+
+```ts
+interface ToggleList extends Block, Literal, Parent {
+  type: "toggle";
+}
+```
+
+**ToggleList** represents [a `Toggle list` block in
+Notion][notion-basic-blocks]. It may have children.
+
+<p align="left"><img height="128" src="images/toggle-0.png"></p>
+
+Example:
+
+<p align="left"><img height="64" src="images/toggle-1.png"></p>
+
+Yields:
+
+```js
+{
+  id: "edf810ae-1684-491d-a6c1-673ad2d3fc57",
+  type: "toggle",
+  value: [["This is a "], ["toggle", [["b"]]], [" "], ["list", [["i"]]]],
+  children: [
+    {
+      id: "689aa04d-d448-48b2-93fa-edbcc93c34d8",
+      type: "text",
+      value: [["This is a child block."]],
+    },
+  ],
+};
 ```
 
 ### `Quote`
