@@ -533,7 +533,7 @@ interface Callout extends Block, Literal {
 
 Example:
 
-<p align="left"><img height="40" src="images/callout-1.png"></p>
+<p align="left"><img height="64" src="images/callout-1.png"></p>
 
 Yields:
 
