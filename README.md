@@ -87,8 +87,8 @@ Example:
 ```js
 {
   id: "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
-  type: "text"
-}
+  type: "text",
+};
 ```
 
 ### `Parent`
@@ -146,8 +146,8 @@ Yields:
   type: "page",
   value: [["This is a subpage"]],
   icon: "☺️",
-  children: []
-}
+  children: [],
+};
 ```
 
 ### `Text`
@@ -182,8 +182,8 @@ Yields:
     [", "],
     ["code", [["c"]]],
     [", and more."],
-  ]
-}
+  ],
+};
 ```
 
 ### `ToDo`
