@@ -6,11 +6,11 @@
 
 ---
 
-**ntast** is a specification for representing [**Notion**][notion] pages in
-[syntax trees][syntax-tree]. It implements the [**unist**][unist] specification.
-It can represent different types of pages in Notion: [Page][notion-page],
-[Table][notion-table], [Board][notion-board], [List][notion-list],
-[Calendar][notion-calendar], [Gallery][notion-gallery], and
+**ntast** is a specification for representing [**Notion contents**][notion] as
+[**abstract syntax trees**][syntax-tree]. It implements the [**unist**][unist]
+specification. It can represent different types of pages in Notion:
+[Page][notion-page], [Table][notion-table], [Board][notion-board],
+[List][notion-list], [Calendar][notion-calendar], [Gallery][notion-gallery], and
 [Timeline][notion-timeline].
 
 ## Contents
@@ -45,19 +45,19 @@ It can represent different types of pages in Notion: [Page][notion-page],
 ## Introduction
 
 This document defines a format, written in [TypeScript], for representing
-[Notion pages][notion-page] as [abstract syntax trees][syntax-tree].
+[Notion contents][notion] as [abstract syntax trees][syntax-tree].
 
 ### Where this specification fits
 
 ntast extends [unist], a format for syntax trees, to benefit from [its ecosystem
 of utilities][unist-utils].
 
-ntast relates to [Notion] and Notion API in that it is designed to enable
-reading from, applying complex transformations, and writing to Notion. It has a
-set of utilities to transform between ntast syntax trees and Notion API schemas.
+ntast relates to [Notion] in that it enables reading from, applying
+transformations, and writing to Notion. It has a set of utilities to transform
+between ntast syntax trees and Notion API schemas.
 
-ntast relates to [unified] and unified-based projects in that it is designed to
-work throughout their ecosystems.
+ntast relates to [unified] and unified-based projects in that it can be used
+throughout their ecosystems.
 
 ntast relates to [JavaScript] in that it has an ecosystem of utilities for
 working with compliant syntax trees in JavaScript. However, ntast is not limited
@@ -70,10 +70,6 @@ such as _Workspaces_, _Accounts_, _Members_, _Permissions_, and similar
 settings. Ecosystem plugins may extend functionalities for these data using
 Notion API.
 
-ntast syntax trees may keep snapshots of Notion-application data to make
-bidirectional transformation possible and that is the only purpose. Ecosystem
-plugins **should not** directly access these snapshots.
-
 ## Nodes
 
 ### `Block`
@@ -84,15 +80,13 @@ interface Block extends UnistNode {
   version: number;
   createdTime: number;
   lastEditedTime: number;
-  __raw__: unknown;
 }
 ```
 
 **Block** ([**UnistNode**][unist-node]) represents a node in ntast and [a
 content block in Notion][notion-block].
 
-Each block has a unique `id`, timestamps, and `__raw__` data for bidirectional
-transformation with Notion API.
+Each block has a unique `id` and timestamps.
 
 Example:
 
