@@ -56,9 +56,6 @@ ntast relates to [Notion] in that it enables reading from, applying
 transformations, and writing to Notion. It has a set of utilities to transform
 between ntast syntax trees and Notion API schemas.
 
-ntast relates to [unified] and unified-based projects in that it can be used
-throughout their ecosystems.
-
 ntast relates to [JavaScript] in that it has an ecosystem of utilities for
 working with compliant syntax trees in JavaScript. However, ntast is not limited
 to JavaScript and can be used in other programming languages.
@@ -96,15 +93,7 @@ Example:
   "type": "text",
   "version": 123,
   "createdTime": 1612532760000,
-  "lastEditedTime": 1612763160000,
-  "__raw__": {
-    "id": "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
-    "type": "text",
-    "version": 123,
-    "created_time": 1612532760000,
-    "last_edited_time": 1612763160000
-    // Other properties...
-  }
+  "lastEditedTime": 1612763160000
 }
 ```
 
