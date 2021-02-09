@@ -34,6 +34,7 @@ It can represent different types of pages in Notion: [Page][notion-page],
   - [`Quote`](#quote)
   - [`Divider`](#divider)
   - [`LinkToPage`](#linktopage)
+  - [`Callout`](#callout)
 - [Content models](#content-models)
   - [`Content`](#content)
   - [`FlowContent`](#flowcontent)
@@ -518,6 +519,36 @@ Notion][notion-basic-blocks]. It is an alias to [**Page**](#page).
 
 <p align="left"><img height="128" src="images/link-to-page-0.png"></p>
 
+### `Callout`
+
+```ts
+interface Callout extends Block, Literal {
+  type: "callout";
+  icon: string;
+  color: Color;
+}
+```
+
+**Callout** represents [a `Callout` block in Notion][notion-callout].
+
+<p align="left"><img height="128" src="images/callout-0.png"></p>
+
+Example:
+
+<p align="left"><img height="40" src="images/callout-1.png"></p>
+
+Yields:
+
+```js
+{
+  id: "5cc11b17-3ee0-4f09-8cca-659e56851db7",
+  type: "callout",
+  value: [["Please read this first"]],
+  icon: "💡",
+  color: "gray_background",
+};
+```
+
 ## Content models
 
 ### `Content`
@@ -586,6 +617,8 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
   https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#8c31584e7c514630b9ebb86afe1125b1
 [notion-basic-blocks]:
   https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#73916b435b674a85b10a165e96d1114e
+[notion-callout]:
+  https://www.notion.so/Callout-blocks-5b2638247b54447eb2e21145f97194b0
 [unist-utils]: https://github.com/syntax-tree/unist#list-of-utilities
 [unist-node]: https://github.com/syntax-tree/unist#node
 [unist-parent]: https://github.com/syntax-tree/unist#parent
