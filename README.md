@@ -37,6 +37,7 @@ It can represent different types of pages in Notion: [Page][notion-page],
   - [`Callout`](#callout)
 - [Content formats](#content-formats)
   - [Inline](#inline)
+  - [Format](#format)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -552,13 +553,13 @@ Yields:
 ### `Inline`
 
 ```ts
-type Inline = [string, Decoration[]?];
+type Inline = [string, Format[]?];
 ```
 
 **Inline** represents [stylable][notion-styling] [inline content][notion-inline]
 in Notion.
 
-It contains a `string` content and optional [**decoration**(s)](#decoration).
+It contains a `string` content and optional [**format**(s)](#format).
 
 Example:
 
@@ -596,6 +597,46 @@ Yields:
   [" ✂️ But we've thrown in a couple others."],
 ];
 ```
+
+### `Format`
+
+```ts
+type Format =
+  | BoldFormat
+  | ItalicFormat
+  | StrikethroughFormat
+  | CodeFormat
+  | UnderlineFormat
+  | LinkFormat
+  | HighlightFormat
+  | UserFormat
+  | PageFormat
+  | ExternalLinkFormat
+  | DateFormat;
+
+type BoldFormat = ["b"];
+type ItalicFormat = ["i"];
+type StrikethroughFormat = ["s"];
+type CodeFormat = ["c"];
+type UnderlineFormat = ["_"];
+type LinkFormat = ["a", string];
+type HighlightFormat = ["h", Color];
+type UserFormat = ["u", string];
+type PageFormat = ["p", string];
+type ExternalLinkFormat = ["‣", [string, string]];
+type DateFormat = [
+  "d",
+  {
+    type: "date" | "daterange";
+    start: string;
+    end?: string;
+    format?: string;
+  }
+];
+```
+
+**Format**(s) represents additional information and metadata to display inline
+content.
 
 ## Acknowledgements
 
