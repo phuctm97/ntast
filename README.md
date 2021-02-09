@@ -50,7 +50,7 @@ This document defines a format, written in [TypeScript], for representing
 ### Where this specification fits
 
 ntast extends [unist], a format for syntax trees, to benefit from [its ecosystem
-of utilities][unist-utils].
+of utilities][unist-utils], [unified], and [unified ecosystem].
 
 ntast relates to [Notion] in that it enables reading from, applying
 transformations, and writing to Notion. It has a set of utilities to transform
@@ -669,7 +669,8 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 [notion tweet]: https://notiontweet.app
 [notion]: https://notion.so
 [unified]: https://github.com/unifiedjs/unified
-[unified-api]: https://github.com/unifiedjs/unified#description
+[unified api]: https://github.com/unifiedjs/unified#description
+[unified ecosystem]: https://unifiedjs.com/explore
 [syntax-tree]: https://github.com/syntax-tree/unist#syntax-tree
 [unist]: https://github.com/syntax-tree/unist
 [mdast]: https://github.com/syntax-tree/mdast
