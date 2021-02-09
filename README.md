@@ -84,10 +84,10 @@ Each block has a unique `id`.
 
 Example:
 
-```jsonc
+```js
 {
-  "id": "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
-  "type": "text"
+  id: "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
+  type: "text"
 }
 ```
 
@@ -134,11 +134,6 @@ A page can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
 
 <p align="left"><img height="128" src="images/subpage-0.png"></p>
 
-A subpage may have its `children` lazy loaded:
-
-- `children = undefined` means it wasn't loaded.
-- `children = []` means it was loaded and is empty.
-
 Example:
 
 <p align="left"><img height="32" src="images/subpage-1.png"></p>
@@ -150,7 +145,8 @@ Yields:
   id: "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
   type: "page",
   value: [["This is a subpage"]],
-  icon: "☺️"
+  icon: "☺️",
+  children: []
 }
 ```
 
