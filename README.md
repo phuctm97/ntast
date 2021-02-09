@@ -35,10 +35,8 @@ It can represent different types of pages in Notion: [Page][notion-page],
   - [`Divider`](#divider)
   - [`LinkToPage`](#linktopage)
   - [`Callout`](#callout)
-- [Content models](#content-models)
-  - [`Content`](#content)
-  - [`FlowContent`](#flowcontent)
-  - [`InlineContent`](#inlinecontent)
+- [Content formats](#content-formats)
+  - [Inline](#inline)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -549,27 +547,54 @@ Yields:
 };
 ```
 
-## Content models
+## Content formats
 
-### `Content`
+### `Inline`
 
 ```ts
-type Content = FlowContent | InlineContent;
+type Inline = [string, Decoration[]?];
 ```
 
-Each node in ntast falls into one or more categories of content that group nodes
-with similar characteristics together.
+**Inline** represents [stylable][notion-styling] [inline content][notion-inline]
+in Notion.
 
-### `FlowContent`
+It contains a `string` content and optional [**decoration**(s)](#decoration).
 
-```ts
-type FlowContent = Block | Text | Divider | ToDo | BulletedList;
-```
+Example:
 
-### `InlineContent`
+<p align="left"><img height="64" src="images/inline-0.png"></p>
 
-```ts
-type InlineContent = unknown;
+Yields:
+
+```js
+[
+  ["All the usual shortcuts apply, like "],
+  ["cmd/ctrl", [["c"]]],
+  [" + "],
+  ["b", [["c"]]],
+  [" for "],
+  ["bold", [["b"]]],
+  [" and "],
+  ["cmd/ctrl", [["c"]]],
+  [" + "],
+  ["shift", [["c"]]],
+  [" + "],
+  ["s", [["c"]]],
+  [" for "],
+  ["strikethrough", [["s"]]],
+  [". Our shortcuts for writing live "],
+  [
+    "here",
+    [
+      [
+        "a",
+        "https://notion.so/notion/Keyboard-Markdown-Shortcuts-66e28cec810548c3a4061513126766b0",
+      ],
+      ["h", "red"],
+    ],
+  ],
+  [" ✂️ But we've thrown in a couple others."],
+];
 ```
 
 ## Acknowledgements
@@ -619,6 +644,10 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
   https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#73916b435b674a85b10a165e96d1114e
 [notion-callout]:
   https://www.notion.so/Callout-blocks-5b2638247b54447eb2e21145f97194b0
+[notion-inline]:
+  https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#7a4ade361ccc4ce881df56036f125e0d
+[notion-styling]:
+  https://www.notion.so/Writing-editing-basics-68c7c67047494fdb87d50185429df93e#7527efecd76a458bba251c267209a5c2
 [unist-utils]: https://github.com/syntax-tree/unist#list-of-utilities
 [unist-node]: https://github.com/syntax-tree/unist#node
 [unist-parent]: https://github.com/syntax-tree/unist#parent
