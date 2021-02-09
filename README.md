@@ -17,7 +17,7 @@ specification. It can represent different types of pages in Notion:
 
 - [Introduction](#introduction)
   - [Where this specification fits](#where-this-specification-fits)
-  - [What this specification doesn't do](#what-this-specification-doesnt-do)
+  - [What this specification isn't about](#what-this-specification-isnt-about)
 - [Nodes](#nodes)
   - [`Block`](#block)
   - [`Parent`](#parent)
@@ -60,7 +60,7 @@ ntast relates to [JavaScript] in that it has an ecosystem of utilities for
 working with compliant syntax trees in JavaScript. However, ntast is not limited
 to JavaScript and can be used in other programming languages.
 
-### What this specification doesn't do
+### What this specification isn't about
 
 ntast focuses on only content and doesn't work with Notion-application data,
 such as _Workspaces_, _Accounts_, _Members_, _Permissions_, and similar
