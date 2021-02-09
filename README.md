@@ -32,6 +32,7 @@ It can represent different types of pages in Notion: [Page][notion-page],
   - [`NumberedList`](#numberedlist)
   - [`Quote`](#quote)
   - [`Divider`](#divider)
+  - [`LinkToPage`](#linktopage)
 - [Content models](#content-models)
   - [`Content`](#content)
   - [`FlowContent`](#flowcontent)
@@ -470,6 +471,17 @@ Yields:
   type: "divider",
 };
 ```
+
+### `LinkToPage`
+
+```ts
+type LinkToPage = Page;
+```
+
+**LinkToPage** represents [a `Link to page` block in
+Notion][notion-basic-blocks]. It is an alias to [**Page**](#page).
+
+<p align="left"><img height="128" src="images/link-to-page-0.png"></p>
 
 ## Content models
 
