@@ -108,14 +108,14 @@ Its `children` are limited to only [**Block**(s)](#block).
 
 ```ts
 interface Literal extends UnistLiteral {
-  value: Inline[];
+  value: Value[];
 }
 ```
 
 **Literal** ([**UnistLiteral**][unist-literal]) represents a node in ntast
 containing a value.
 
-Its `value` is an ordered list of [**Inline object**(s)](#inline).
+Its `value` is an ordered list of [**Value object**(s)](#value).
 
 ### `Page`
 
@@ -522,16 +522,16 @@ Yields:
 
 ## Content formats
 
-### `Inline`
+### `Value`
 
 ```ts
-type Inline = [string, Format[]?];
+type Value = [string, Format[]?];
 ```
 
-**Inline** represents a [stylable][notion-styling] [inline
-content][notion-inline] in Notion.
+**Value** represents a value literal in Notion.
 
-It contains a `string` content and optional [**format**(s)](#format).
+Each value has a `string` content and optional [**format**(s)](#format) defining
+[In-line][notion-inline] and [Styling][notion-styling] options.
 
 Example:
 
@@ -607,8 +607,8 @@ type DateFormat = [
 ];
 ```
 
-**Format**(s) represents additional information and metadata to display an
-[**inline content**](#inline).
+**Format**(s) represents [In-line][notion-inline] and [Styling][notion-styling]
+options for a [**value**](#value).
 
 ### `Color`
 
