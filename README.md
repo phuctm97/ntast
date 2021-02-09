@@ -73,27 +73,21 @@ Notion API.
 
 ```ts
 interface Block extends UnistNode {
-  id: UUID;
-  version: number;
-  createdTime: number;
-  lastEditedTime: number;
+  id: string;
 }
 ```
 
 **Block** ([**UnistNode**][unist-node]) represents a node in ntast and [a
 content block in Notion][notion-block].
 
-Each block has a unique `id` and timestamps.
+Each block has a unique `id`.
 
 Example:
 
 ```jsonc
 {
   "id": "b3e6e681-2eaa-4f1a-89c4-dde7f7f7a167",
-  "type": "text",
-  "version": 123,
-  "createdTime": 1612532760000,
-  "lastEditedTime": 1612763160000
+  "type": "text"
 }
 ```
 
@@ -392,13 +386,11 @@ Yields:
   },
   {
     id: "385a10b8-f1fa-49b0-a704-02a109c92953",
-    version: 32,
     type: "numbered_list",
     value: [["This is the second item"]],
   },
   {
     id: "8c6225e1-78b1-4e8d-b658-adc6e2b045ea",
-    version: 37,
     type: "numbered_list",
     value: [["This is the third item"]],
   },
