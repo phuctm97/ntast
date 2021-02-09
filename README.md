@@ -36,8 +36,8 @@ It can represent different types of pages in Notion: [Page][notion-page],
   - [`LinkToPage`](#linktopage)
   - [`Callout`](#callout)
 - [Content formats](#content-formats)
-  - [Inline](#inline)
-  - [Format](#format)
+  - [`Inline`](#inline)
+  - [`Format`](#format)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -48,7 +48,7 @@ This document defines a format, written in [TypeScript], for representing
 
 ### Where this specification fits
 
-ntast extends [unist], a format for syntax trees, to benefit from its [ecosystem
+ntast extends [unist], a format for syntax trees, to benefit from [its ecosystem
 of utilities][unist-utils].
 
 ntast relates to [Notion] and Notion API in that it is designed to enable
@@ -233,13 +233,13 @@ Example:
 Yields:
 
 ```js
-// Before
+// First
 {
   id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
   type: "to_do",
   value: [["This is a "], ["todo", [["b"]]], [" item."]],
 }
-// After
+// Second
 {
   id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
   type: "to_do",
