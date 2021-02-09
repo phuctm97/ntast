@@ -29,6 +29,7 @@ It can represent different types of pages in Notion: [Page][notion-page],
   - [`Heading2`](#heading2)
   - [`Heading3`](#heading3)
   - [`BulletedList`](#bulletedlist)
+  - [`NumberedList`](#numberedlist)
   - [`Divider`](#divider)
 - [Content models](#content-models)
   - [`Content`](#content)
@@ -150,7 +151,7 @@ interface Page extends Block, Parent, Literal {
 A page can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
 [_child_][unist-child] of another page (also known as a subpage).
 
-<p align="left"><img height="128" src="images/screenshot-subpage-0.png"></p>
+<p align="left"><img height="128" src="images/subpage-0.png"></p>
 
 A subpage may have its `children` lazy loaded:
 
@@ -159,7 +160,7 @@ A subpage may have its `children` lazy loaded:
 
 Example:
 
-<p align="left"><img height="32" src="images/screenshot-subpage-1.png"></p>
+<p align="left"><img height="32" src="images/subpage-1.png"></p>
 
 Yields:
 
@@ -182,11 +183,11 @@ interface Text extends Block, Literal {
 
 **Text** represents [a `Text` block in Notion][notion-basic-blocks].
 
-<p align="left"><img height="128" src="images/screenshot-text-0.png"></p>
+<p align="left"><img height="128" src="images/text-0.png"></p>
 
 Example:
 
-<p align="left"><img height="32" src="images/screenshot-text-1.png"></p>
+<p align="left"><img height="32" src="images/text-1.png"></p>
 
 Yields:
 
@@ -219,12 +220,12 @@ interface ToDo extends Block, Literal {
 
 **ToDo** represents [a `To-do list` block in Notion][notion-basic-blocks].
 
-<p align="left"><img height="128" src="images/screenshot-todo-0.png"></p>
+<p align="left"><img height="128" src="images/todo-0.png"></p>
 
 Example:
 
-<p align="left"><img height="32" src="images/screenshot-todo-1.png"></p>
-<p align="left"><img height="32" src="images/screenshot-todo-2.png"></p>
+<p align="left"><img height="32" src="images/todo-1.png"></p>
+<p align="left"><img height="32" src="images/todo-2.png"></p>
 
 Yields:
 
@@ -254,11 +255,11 @@ interface Heading1 extends Block, Literal {
 
 **Heading1** represents [a `Heading 1` block in Notion][notion-basic-blocks].
 
-<p align="left"><img height="128" src="images/screenshot-h1-0.png"></p>
+<p align="left"><img height="128" src="images/h1-0.png"></p>
 
 Example:
 
-<p align="left"><img height="48" src="images/screenshot-h1-1.png"></p>
+<p align="left"><img height="48" src="images/h1-1.png"></p>
 
 Yields:
 
@@ -280,11 +281,11 @@ interface Heading2 extends Block, Literal {
 
 **Heading2** represents [a `Heading 2` block in Notion][notion-basic-blocks].
 
-<p align="left"><img height="128" src="images/screenshot-h2-0.png"></p>
+<p align="left"><img height="128" src="images/h2-0.png"></p>
 
 Example:
 
-<p align="left"><img height="38" src="images/screenshot-h2-1.png"></p>
+<p align="left"><img height="38" src="images/h2-1.png"></p>
 
 Yields:
 
@@ -306,11 +307,11 @@ interface Heading3 extends Block, Literal {
 
 **Heading3** represents [a `Heading 3` block in Notion][notion-basic-blocks].
 
-<p align="left"><img height="128" src="images/screenshot-h3-0.png"></p>
+<p align="left"><img height="128" src="images/h3-0.png"></p>
 
 Example:
 
-<p align="left"><img height="32" src="images/screenshot-h3-1.png"></p>
+<p align="left"><img height="28" src="images/h3-1.png"></p>
 
 Yields:
 
@@ -333,11 +334,11 @@ interface BulletedList extends Block, Literal, Parent {
 **BulletedList** represents [a `Bulleted list` block in
 Notion][notion-basic-blocks]. It may have children.
 
-<p align="left"><img height="128" src="images/screenshot-ul-0.png"></p>
+<p align="left"><img height="128" src="images/ul-0.png"></p>
 
 Example:
 
-<p align="left"><img height="100" src="images/screenshot-ul-1.png"></p>
+<p align="left"><img height="110" src="images/ul-1.png"></p>
 
 Yields:
 
@@ -372,6 +373,47 @@ Yields:
       ["/h3", [["c"]]],
       ["."],
     ],
+  },
+];
+```
+
+## `NumberedList`
+
+```ts
+interface NumberedList extends Block, Literal, Parent {
+  type: "numbered_list";
+}
+```
+
+**NumberedList** represents [a `Numbered list` block in
+Notion][notion-basic-blocks]. It may have children.
+
+<p align="left"><img height="128" src="images/ol-0.png"></p>
+
+Example:
+
+<p align="left"><img height="110" src="images/ol-1.png"></p>
+
+Yields:
+
+```js
+[
+  {
+    id: "a405f18e-978e-4c80-9055-1def35f84b47",
+    type: "numbered_list",
+    value: [["This is an item"]],
+  },
+  {
+    id: "385a10b8-f1fa-49b0-a704-02a109c92953",
+    version: 32,
+    type: "numbered_list",
+    value: [["This is the second item"]],
+  },
+  {
+    id: "8c6225e1-78b1-4e8d-b658-adc6e2b045ea",
+    version: 37,
+    type: "numbered_list",
+    value: [["This is the third item"]],
   },
 ];
 ```
