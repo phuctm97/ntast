@@ -130,7 +130,7 @@ interface Page extends Block, Parent, Literal {
 **Page** represents [a `Page` in Notion][notion-page].
 
 A page can be the [_root_][unist-root] of a [_tree_][unist-tree] or a
-[_child_][unist-child] of another page (said to be a sub-page in Notion).
+[_child_][unist-child] of another page (known as a sub-page in Notion).
 
 <p align="left"><img height="128" src="images/subpage-0.png"></p>
 
