@@ -30,6 +30,7 @@ It can represent different types of pages in Notion: [Page][notion-page],
   - [`Heading3`](#heading3)
   - [`BulletedList`](#bulletedlist)
   - [`NumberedList`](#numberedlist)
+  - [`Quote`](#quote)
   - [`Divider`](#divider)
 - [Content models](#content-models)
   - [`Content`](#content)
@@ -416,6 +417,36 @@ Yields:
     value: [["This is the third item"]],
   },
 ];
+```
+
+### `Quote`
+
+```ts
+interface Quote extends Block, Literal {
+  type: "quote";
+}
+```
+
+**Quote** represents [a `Quote` block in Notion][notion-basic-blocks].
+
+<p align="left"><img height="128" src="images/quote-0.png"></p>
+
+Example:
+
+<p align="left"><img height="32" src="images/quote-1.png"></p>
+
+Yields:
+
+```js
+{
+  id: "d3a9da64-26e3-44b3-a22a-99a6b02880d3",
+  type: "quote",
+  value: [
+    [
+      '"The way to get started is to quit talking and begin doing." - Walt Disney',
+    ],
+  ],
+};
 ```
 
 ### `Divider`
