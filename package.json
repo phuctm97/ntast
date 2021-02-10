@@ -1,0 +1,19 @@
+{
+  "name": "ntast",
+  "version": "0.1.0",
+  "repository": "https://github.com/phuctm97/ntast.git",
+  "author": {
+    "name": "Minh-Phuc Tran",
+    "email": "me@phuctm97.com",
+    "url": "https://phuctm97.com"
+  },
+  "license": "CC-BY-4.0",
+  "private": false,
+  "scripts": {
+    "style:check": "prettier --check .",
+    "style:format": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}
