@@ -590,6 +590,7 @@ type Format =
   | UserFormat
   | PageFormat
   | ExternalLinkFormat
+  | EquationFormat
   | DateFormat;
 
 type BoldFormat = ["b"];
@@ -602,6 +603,7 @@ type HighlightFormat = ["h", Color];
 type UserFormat = ["u", string];
 type PageFormat = ["p", string];
 type ExternalLinkFormat = ["‣", [string, string]];
+type EquationFormat = ['e', string];
 type DateFormat = [
   "d",
   {
