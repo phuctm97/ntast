@@ -6,7 +6,11 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
 
-  // Dictionary
+  // Misc
+  "files.exclude": {
+    "node_modules/": true,
+    "yarn.lock": true
+  },
   "cSpell.words": [
     "Callout",
     "creativecommons",

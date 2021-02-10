@@ -1,0 +1,24 @@
+name: PR
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  NODE_VERSION: 12
+  FORCE_COLOR: 3
+
+jobs:
+  style-check:
+    name: Style check
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Prettier check
+        uses: actionsx/prettier@v2
+        with:
+          args: --check .
