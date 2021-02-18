@@ -471,7 +471,8 @@ interface Divider extends Block {
 }
 ```
 
-**Divider** represents [a `Divider` block in Notion][notion-basic-blocks]. It has no content.
+**Divider** represents [a `Divider` block in Notion][notion-basic-blocks]. It
+has no content.
 
 <p align="left"><img height="128" src="images/divider-0.png"></p>
 
@@ -543,7 +544,8 @@ type Value = [TextContent, Format[]?];
 
 **Value** represents a value literal in Notion.
 
-Each value has a `string` content and optional [**format**(s)](#format) defining [Styling][notion-styling] options.
+Each value has a `string` content and optional [**format**(s)](#format) defining
+[Styling][notion-styling] options.
 
 Example:
 
@@ -592,7 +594,7 @@ type StyleFormat =
   | CodeFormat
   | UnderlineFormat
   | LinkFormat
-  | HighlightFormat
+  | HighlightFormat;
 
 type BoldFormat = ["b"];
 type ItalicFormat = ["i"];
@@ -603,7 +605,8 @@ type LinkFormat = ["a", string];
 type HighlightFormat = ["h", Color];
 ```
 
-**StyleFormat**(s) represents [Styling][notion-styling] options for a [**value**](#value).
+**StyleFormat**(s) represents [Styling][notion-styling] options for a
+[**value**](#value).
 
 ### `Color`
 
@@ -636,7 +639,7 @@ type Color =
 Inline blocks are represented in the following manner:-
 
 ```ts
-type InlineContent = '‣' | '⁍';
+type InlineContent = "‣" | "⁍";
 type Value = [InlineContent, InlineFormat[]?];
 ```
 
@@ -648,72 +651,34 @@ Yields:
 
 ```js
 [
-  [
-    "You can embed inline equation "
-  ],
-  [
-    "⁍",
-    [
-      [
-        "e",
-        "e = mc^2"
-      ]
-    ]
-  ],
-  [
-    ", page "
-  ],
-  [
-    "‣",
-    [
-      [
-        "p",
-        "57dcb2ae-4528-4939-8207-9ed5d1e01809"
-      ]
-    ]
-  ],
-  [
-    ", user "
-  ],
-  [
-    "‣",
-    [
-      [
-        "u",
-        "62e85506-1758-481a-92b1-73984a903451"
-      ]
-    ]
-  ],
-  [
-    " and even date "
-  ],
+  ["You can embed inline equation "],
+  ["⁍", [["e", "e = mc^2"]]],
+  [", page "],
+  ["‣", [["p", "57dcb2ae-4528-4939-8207-9ed5d1e01809"]]],
+  [", user "],
+  ["‣", [["u", "62e85506-1758-481a-92b1-73984a903451"]]],
+  [" and even date "],
   [
     "‣",
     [
       [
         "d",
         {
-          "type": "date",
-          "start_date": "2021-02-18",
-          "date_format": "relative"
-        }
-      ]
-    ]
+          type: "date",
+          start_date: "2021-02-18",
+          date_format: "relative",
+        },
+      ],
+    ],
   ],
-  [
-    "."
-  ]
-]
+  ["."],
+];
 ```
 
 ### `InlineFormat`
 
 ```ts
-type InlineFormat =
-  | UserFormat
-  | PageFormat
-  | EquationFormat
-  | DateFormat;
+type InlineFormat = UserFormat | PageFormat | EquationFormat | DateFormat;
 
 type UserFormat = ["u", string];
 type PageFormat = ["p", string];
@@ -729,7 +694,8 @@ type DateFormat = [
 ];
 ```
 
-**InlineFormat**(s) represents [In-line][notion-inline] options for a [**value**](#value).
+**InlineFormat**(s) represents [In-line][notion-inline] options for a
+[**value**](#value).
 
 ## Acknowledgements
 
