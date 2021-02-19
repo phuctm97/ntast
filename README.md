@@ -35,10 +35,14 @@ specification. It can represent different types of pages in Notion:
   - [`Divider`](#divider)
   - [`LinkToPage`](#linktopage)
   - [`Callout`](#callout)
-- [Content formats](#content-formats)
-  - [`Value`](#value)
-  - [`Format`](#format)
-  - [`Color`](#color)
+- [Content blocks](#content-blocks)
+  - [`Text Block`](#text-block)
+    - [`Text Value`](#text-value)
+    - [`StyleFormat`](#styleformat)
+    - [`Color`](#color)
+  - [`Inline Blocks`](#inline-blocks)
+    - [`Inline Value`](#inlinevalue)
+    - [`InlineFormat`](#inlineformat)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -526,9 +530,9 @@ Yields:
 };
 ```
 
-## Content formats
+## Content blocks
 
-There are two types of content formats available
+There are two types of content blocks available
 
 1. [Text block](#text)
 2. [Inline blocks](#inline-blocks)
@@ -586,7 +590,7 @@ Yields:
 ];
 ```
 
-### `StyleFormat`
+#### `StyleFormat`
 
 ```ts
 type StyleFormat =
@@ -610,7 +614,7 @@ type HighlightFormat = ["h", Color];
 **StyleFormat**(s) represents [Styling][notion-styling] options for a
 [**text value**](#text-value).
 
-### `Color`
+#### `Color`
 
 ```ts
 type Color =
@@ -640,11 +644,14 @@ type Color =
 
 Inline blocks are represented in the following manner:-
 
+#### `InlineValue`
+
 ```ts
 type EquationContent = "⁍";
 type ReferenceContent = "‣";
 type EquationValue = [EquationContent, EquationFormat[]?];
 type ReferenceValue = [ReferenceContent, ReferenceFormat[]?];
+type InlineValue = EquationValue | ReferenceValue;
 ```
 
 Example:
@@ -679,11 +686,11 @@ Yields:
 ];
 ```
 
-### `InlineFormat`
+#### `InlineFormat`
 
 ```ts
-type InlineFormat = UserFormat | PageFormat | EquationFormat | DateFormat;
 type ReferenceFormat = UserFormat | PageFormat | DateFormat;
+type InlineFormat = ReferenceFormat | EquationFormat;
 
 type UserFormat = ["u", string];
 type PageFormat = ["p", string];
@@ -700,7 +707,7 @@ type DateFormat = [
 ```
 
 **InlineFormat**(s) represents [In-line][notion-inline] options for a
-[**value**](#value).
+[**inline value**](#inlinevalue).
 
 ## Acknowledgements
 
