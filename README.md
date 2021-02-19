@@ -44,6 +44,7 @@ specification. It can represent different types of pages in Notion:
     - [`Inline Value`](#inlinevalue)
     - [`InlineFormat`](#inlineformat)
 - [Acknowledgements](#acknowledgements)
+- [Contributors](#contributors)
 - [License](#license)
 
 ## Introduction
@@ -718,6 +719,11 @@ ntast is created and maintained by the creator of [Notion Tweet].
 
 Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 [mdast], and [unified], by which this project is heavily inspired.
+
+## Contributors
+
+- [Minh-Phuc Tran][@phuctm97].
+- [Safwan Shaheer](https://github.com/Devorein).
 
 ## License
 
