@@ -35,14 +35,11 @@ specification. It can represent different types of pages in Notion:
   - [`Divider`](#divider)
   - [`LinkToPage`](#linktopage)
   - [`Callout`](#callout)
-- [Content blocks](#content-blocks)
-  - [`Text Block`](#text-block)
-    - [`Text Value`](#text-value)
-    - [`StyleFormat`](#styleformat)
-    - [`Color`](#color)
-  - [`Inline Blocks`](#inline-blocks)
-    - [`Inline Value`](#inlinevalue)
-    - [`InlineFormat`](#inlineformat)
+- [Content formats](#content-formats)
+  - [`Value`](#value)
+  - [`TextValue`](#textvalue)
+  - [`ReferenceValue`](#referencevalue)
+  - [`EquationValue`](#equationvalue)
 - [Acknowledgements](#acknowledgements)
 - [Contributors](#contributors)
 - [License](#license)
@@ -531,28 +528,63 @@ Yields:
 };
 ```
 
-## Content blocks
+## Content formats
 
-There are two types of content blocks available
-
-1. [Text block](#text)
-2. [Inline blocks](#inline-blocks)
-
-### Text block
-
-Text blocks are represented in the following manner:-
-
-#### Text Value
+### `Value`
 
 ```ts
-type TextContent = string;
-type TextValue = [TextContent, StyleFormat[]?];
+type Value = TextValue | ReferenceValue | EquationValue;
 ```
 
-**TextValue** represents a text value literal in Notion.
+**Value** represents an inline literal in Notion, which can be either
+[**text**](#textvalue), or [**reference**](#referencevalue), or
+[**equation**](#equationvalue).
 
-`TextValue` has a `string` content and optional
-[**style format**(s)](#styleformat) defining [Styling][notion-styling] options.
+### `TextValue`
+
+```ts
+type TextValue = [string, TextFormat[]?];
+
+type TextFormat =
+  | BoldFormat
+  | ItalicFormat
+  | StrikethroughFormat
+  | CodeFormat
+  | UnderlineFormat
+  | LinkFormat
+  | HighlightFormat;
+
+type BoldFormat = ["b"];
+type ItalicFormat = ["i"];
+type StrikethroughFormat = ["s"];
+type CodeFormat = ["c"];
+type UnderlineFormat = ["_"];
+type LinkFormat = ["a", string];
+type HighlightFormat = ["h", Color];
+
+type Color =
+  | "gray"
+  | "brown"
+  | "orange"
+  | "yellow"
+  | "teal"
+  | "blue"
+  | "purple"
+  | "pink"
+  | "red"
+  | "gray_background"
+  | "brown_background"
+  | "orange_background"
+  | "yellow_background"
+  | "teal_background"
+  | "blue_background"
+  | "purple_background"
+  | "pink_background"
+  | "red_background";
+```
+
+**TextValue** represents a text literal in Notion, which can have [styling
+options][notion-styling].
 
 Example:
 
@@ -591,69 +623,27 @@ Yields:
 ];
 ```
 
-#### `StyleFormat`
+### `ReferenceValue`
 
 ```ts
-type StyleFormat =
-  | BoldFormat
-  | ItalicFormat
-  | StrikethroughFormat
-  | CodeFormat
-  | UnderlineFormat
-  | LinkFormat
-  | HighlightFormat;
+type ReferenceValue = ["‣", ReferenceFormat[]?];
 
-type BoldFormat = ["b"];
-type ItalicFormat = ["i"];
-type StrikethroughFormat = ["s"];
-type CodeFormat = ["c"];
-type UnderlineFormat = ["_"];
-type LinkFormat = ["a", string];
-type HighlightFormat = ["h", Color];
+type ReferenceFormat = UserFormat | PageFormat | DateFormat;
+
+type UserFormat = ["u", string];
+type PageFormat = ["p", string];
+type DateFormat = [
+  "d",
+  {
+    type: "date" | "daterange";
+    start: string;
+    end?: string;
+    format?: string;
+  }
+];
 ```
 
-**StyleFormat**(s) represents [Styling][notion-styling] options for a
-[**text value**](#text-value).
-
-#### `Color`
-
-```ts
-type Color =
-  | "gray"
-  | "brown"
-  | "orange"
-  | "yellow"
-  | "teal"
-  | "blue"
-  | "purple"
-  | "pink"
-  | "red"
-  | "gray_background"
-  | "brown_background"
-  | "orange_background"
-  | "yellow_background"
-  | "teal_background"
-  | "blue_background"
-  | "purple_background"
-  | "pink_background"
-  | "red_background";
-```
-
-**Color** represents supported colors in Notion.
-
-### Inline blocks
-
-Inline blocks are represented in the following manner:-
-
-#### `InlineValue`
-
-```ts
-type EquationContent = "⁍";
-type ReferenceContent = "‣";
-type EquationValue = [EquationContent, EquationFormat[]?];
-type ReferenceValue = [ReferenceContent, ReferenceFormat[]?];
-type InlineValue = EquationValue | ReferenceValue;
-```
+**ReferenceValue** represents a reference literal in Notion.
 
 Example:
 
@@ -663,8 +653,7 @@ Yields:
 
 ```js
 [
-  ["You can embed inline equation "],
-  ["⁍", [["e", "e = mc^2"]]],
+  // Others...
   [", page "],
   ["‣", [["p", "57dcb2ae-4528-4939-8207-9ed5d1e01809"]]],
   [", user "],
@@ -687,28 +676,29 @@ Yields:
 ];
 ```
 
-#### `InlineFormat`
+### `EquationValue`
 
 ```ts
-type ReferenceFormat = UserFormat | PageFormat | DateFormat;
-type InlineFormat = ReferenceFormat | EquationFormat;
+type EquationValue = ["⁍", EquationFormat[]?];
 
-type UserFormat = ["u", string];
-type PageFormat = ["p", string];
 type EquationFormat = ["e", string];
-type DateFormat = [
-  "d",
-  {
-    type: "date" | "daterange";
-    start: string;
-    end?: string;
-    format?: string;
-  }
-];
 ```
 
-**InlineFormat**(s) represents [In-line][notion-inline] options for a
-[**inline value**](#inlinevalue).
+**EquationValue** represent an equation literal in Notion.
+
+Example:
+
+<p align="left"><img height="64" src="images/format-1.png"></p>
+
+Yields:
+
+```js
+[
+  ["You can embed inline equation "],
+  ["⁍", [["e", "e = mc^2"]]],
+  // Others...
+];
+```
 
 ## Acknowledgements
 
@@ -722,8 +712,8 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 
 ## Contributors
 
-- [Minh-Phuc Tran][@phuctm97].
-- [Safwan Shaheer](https://github.com/Devorein).
+- [Minh-Phuc Tran][@phuctm97]
+- [Safwan Shaheer](https://github.com/Devorein)
 
 ## License
 
