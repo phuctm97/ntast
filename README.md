@@ -35,10 +35,14 @@ specification. It can represent different types of pages in Notion:
   - [`Divider`](#divider)
   - [`LinkToPage`](#linktopage)
   - [`Callout`](#callout)
-- [Content formats](#content-formats)
-  - [`Value`](#value)
-  - [`Format`](#format)
-  - [`Color`](#color)
+- [Content blocks](#content-blocks)
+  - [`Text Block`](#text-block)
+    - [`Text Value`](#text-value)
+    - [`StyleFormat`](#styleformat)
+    - [`Color`](#color)
+  - [`Inline Blocks`](#inline-blocks)
+    - [`Inline Value`](#inlinevalue)
+    - [`InlineFormat`](#inlineformat)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 
@@ -526,22 +530,32 @@ Yields:
 };
 ```
 
-## Content formats
+## Content blocks
 
-### `Value`
+There are two types of content blocks available
+
+1. [Text block](#text)
+2. [Inline blocks](#inline-blocks)
+
+### Text block
+
+Text blocks are represented in the following manner:-
+
+#### Text Value
 
 ```ts
-type Value = [string, Format[]?];
+type TextContent = string;
+type TextValue = [TextContent, StyleFormat[]?];
 ```
 
-**Value** represents a value literal in Notion.
+**TextValue** represents a text value literal in Notion.
 
-Each value has a `string` content and optional [**format**(s)](#format) defining
-[In-line][notion-inline] and [Styling][notion-styling] options.
+`TextValue` has a `string` content and optional
+[**style format**(s)](#styleformat) defining [Styling][notion-styling] options.
 
 Example:
 
-<p align="left"><img height="64" src="images/inline-0.png"></p>
+<p align="left"><img height="64" src="images/format-0.png"></p>
 
 Yields:
 
@@ -576,21 +590,17 @@ Yields:
 ];
 ```
 
-### `Format`
+#### `StyleFormat`
 
 ```ts
-type Format =
+type StyleFormat =
   | BoldFormat
   | ItalicFormat
   | StrikethroughFormat
   | CodeFormat
   | UnderlineFormat
   | LinkFormat
-  | HighlightFormat
-  | UserFormat
-  | PageFormat
-  | ExternalLinkFormat
-  | DateFormat;
+  | HighlightFormat;
 
 type BoldFormat = ["b"];
 type ItalicFormat = ["i"];
@@ -599,24 +609,12 @@ type CodeFormat = ["c"];
 type UnderlineFormat = ["_"];
 type LinkFormat = ["a", string];
 type HighlightFormat = ["h", Color];
-type UserFormat = ["u", string];
-type PageFormat = ["p", string];
-type ExternalLinkFormat = ["‣", [string, string]];
-type DateFormat = [
-  "d",
-  {
-    type: "date" | "daterange";
-    start: string;
-    end?: string;
-    format?: string;
-  }
-];
 ```
 
-**Format**(s) represents [In-line][notion-inline] and [Styling][notion-styling]
-options for a [**value**](#value).
+**StyleFormat**(s) represents [Styling][notion-styling] options for a
+[**text value**](#text-value).
 
-### `Color`
+#### `Color`
 
 ```ts
 type Color =
@@ -641,6 +639,75 @@ type Color =
 ```
 
 **Color** represents supported colors in Notion.
+
+### Inline blocks
+
+Inline blocks are represented in the following manner:-
+
+#### `InlineValue`
+
+```ts
+type EquationContent = "⁍";
+type ReferenceContent = "‣";
+type EquationValue = [EquationContent, EquationFormat[]?];
+type ReferenceValue = [ReferenceContent, ReferenceFormat[]?];
+type InlineValue = EquationValue | ReferenceValue;
+```
+
+Example:
+
+<p align="left"><img height="64" src="images/format-1.png"></p>
+
+Yields:
+
+```js
+[
+  ["You can embed inline equation "],
+  ["⁍", [["e", "e = mc^2"]]],
+  [", page "],
+  ["‣", [["p", "57dcb2ae-4528-4939-8207-9ed5d1e01809"]]],
+  [", user "],
+  ["‣", [["u", "62e85506-1758-481a-92b1-73984a903451"]]],
+  [" and even date "],
+  [
+    "‣",
+    [
+      [
+        "d",
+        {
+          type: "date",
+          start_date: "2021-02-18",
+          date_format: "relative",
+        },
+      ],
+    ],
+  ],
+  ["."],
+];
+```
+
+#### `InlineFormat`
+
+```ts
+type ReferenceFormat = UserFormat | PageFormat | DateFormat;
+type InlineFormat = ReferenceFormat | EquationFormat;
+
+type UserFormat = ["u", string];
+type PageFormat = ["p", string];
+type EquationFormat = ["e", string];
+type DateFormat = [
+  "d",
+  {
+    type: "date" | "daterange";
+    start: string;
+    end?: string;
+    format?: string;
+  }
+];
+```
+
+**InlineFormat**(s) represents [In-line][notion-inline] options for a
+[**inline value**](#inlinevalue).
 
 ## Acknowledgements
 
