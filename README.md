@@ -537,15 +537,17 @@ There are two types of content formats available
 
 Text blocks are represented in the following manner:-
 
+#### Text Value
+
 ```ts
 type TextContent = string;
-type Value = [TextContent, Format[]?];
+type TextValue = [TextContent, StyleFormat[]?];
 ```
 
-**Value** represents a value literal in Notion.
+**TextValue** represents a text value literal in Notion.
 
-Each value has a `string` content and optional [**format**(s)](#format) defining
-[Styling][notion-styling] options.
+`TextValue` has a `string` content and optional
+[**style format**(s)](#styleformat) defining [Styling][notion-styling] options.
 
 Example:
 
@@ -606,7 +608,7 @@ type HighlightFormat = ["h", Color];
 ```
 
 **StyleFormat**(s) represents [Styling][notion-styling] options for a
-[**value**](#value).
+[**text value**](#text-value).
 
 ### `Color`
 
@@ -639,8 +641,10 @@ type Color =
 Inline blocks are represented in the following manner:-
 
 ```ts
-type InlineContent = "‣" | "⁍";
-type Value = [InlineContent, InlineFormat[]?];
+type EquationContent = "⁍";
+type ReferenceContent = "‣";
+type EquationValue = [EquationContent, EquationFormat[]?];
+type ReferenceValue = [ReferenceContent, ReferenceFormat[]?];
 ```
 
 Example:
@@ -679,6 +683,7 @@ Yields:
 
 ```ts
 type InlineFormat = UserFormat | PageFormat | EquationFormat | DateFormat;
+type ReferenceFormat = UserFormat | PageFormat | DateFormat;
 
 type UserFormat = ["u", string];
 type PageFormat = ["p", string];
