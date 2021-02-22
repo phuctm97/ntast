@@ -555,8 +555,12 @@ Yields:
   {
     id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
     type: "image",
-    source: [["https://cdn.iconscout.com/icon/free/png-256/notion-1693557-1442598.png"]]
-  }
+    source: [
+      [
+        "https://cdn.iconscout.com/icon/free/png-256/notion-1693557-1442598.png",
+      ],
+    ],
+  },
 ];
 ```
 
