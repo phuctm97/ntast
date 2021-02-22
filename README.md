@@ -42,6 +42,7 @@ specification. It can represent different types of pages in Notion:
   - [`EquationValue`](#equationvalue)
 - [Acknowledgements](#acknowledgements)
 - [Contributors](#contributors)
+- [Related](#related)
 - [License](#license)
 
 ## Introduction
@@ -714,6 +715,11 @@ Special thanks to [@wooorm](https://github.com/wooorm) for his work on [unist],
 
 - [Minh-Phuc Tran][@phuctm97]
 - [Safwan Shaheer](https://github.com/Devorein)
+
+## Related
+
+- [Nishan](https://github.com/Devorein/Nishan)
+- [react-notion-x](https://github.com/NotionX/react-notion-x)
 
 ## License
 
