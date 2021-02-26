@@ -98,7 +98,7 @@ Example:
 ### `Parent`
 
 ```ts
-interface Parent extends UnistParent, Block {
+interface Parent extends UnistParent {
   children: Block[];
 }
 ```
