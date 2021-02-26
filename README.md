@@ -35,6 +35,7 @@ specification. It can represent different types of pages in Notion:
   - [`Divider`](#divider)
   - [`LinkToPage`](#linktopage)
   - [`Callout`](#callout)
+  - [`Image`](#image)
 - [Content formats](#content-formats)
   - [`Value`](#value)
   - [`TextValue`](#textvalue)
@@ -527,6 +528,40 @@ Yields:
   icon: "💡",
   color: "gray_background",
 };
+```
+
+### `Image`
+
+```ts
+interface Image extends Block {
+  type: "image";
+  source: string[][];
+}
+```
+
+**Image** represents [a `Image` block in Notion][notion-basic-blocks].
+
+<p align="left"><img height="128" src="images/image-0.png"></p>
+
+Example:
+
+<p align="left"><img height="128" src="images/image-1.png"></p>
+<p align="left"><img height="128" src="images/image-2.png"></p>
+
+Yields:
+
+```js
+[
+  {
+    id: "8b3cfeed-c0da-451e-8f18-f7086c321979",
+    type: "image",
+    source: [
+      [
+        "https://cdn.iconscout.com/icon/free/png-256/notion-1693557-1442598.png",
+      ],
+    ],
+  },
+];
 ```
 
 ## Content formats
